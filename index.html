@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<!-- tarjeta de vista previa: es lo que se ve al compartir el enlace en WhatsApp -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gamoralesdesign-ec.github.io/">
+<meta property="og:site_name" content="Gary Morales">
+<meta property="og:locale" content="es_EC">
+<meta property="og:title" content="La empresa que se mide sola">
+<meta property="og:description" content="Inventario, compras, publicidad y atención al cliente en un solo dashboard, siempre al día. Menos gasto, menos horas y más venta cerrada.">
+<meta property="og:image" content="https://gamoralesdesign-ec.github.io/preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="La empresa que se mide sola — Gary Morales, automatización con IA">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="La empresa que se mide sola">
+<meta name="twitter:description" content="Inventario, compras, publicidad y atención al cliente en un solo dashboard, siempre al día.">
+<meta name="twitter:image" content="https://gamoralesdesign-ec.github.io/preview.png">
+<meta name="theme-color" content="#141C38">
+<meta name="author" content="Gary Morales">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23141C38'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%23D98E73' stroke-width='2.6'/%3E%3Ccircle cx='16' cy='16' r='2.4' fill='%23D98E73'/%3E%3C/svg%3E">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>La empresa que se mide sola</title>
+<meta name="description" content="Automatización con IA para empresas con varias agencias: menos gasto, menos horas y más venta cerrada.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy-deep:#0E1530;
+  --navy:#141C38;
+  --navy-mid:#1A2547;
+  --navy-light:#22315E;
+  --copper:#D98E73;
+  --copper-soft:#E9B49F;
+  --copper-dark:#B96F52;
+  --bone:#F7F7F2;
+  --muted:rgba(247,247,242,.66);
+  --faint:rgba(247,247,242,.42);
+  --card:rgba(217,142,115,.065);
+  --card-2:rgba(247,247,242,.045);
+  --line:rgba(217,142,115,.20);
+  --line-soft:rgba(247,247,242,.10);
+  --green:#5FD39A;
+  --amber:#F2C15B;
+  --red:#F07A6A;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+html,body{max-width:100%;overflow-x:hidden}
+body{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  background:var(--navy);color:var(--bone);
+  overflow:hidden;-webkit-font-smoothing:antialiased;
+}
+
+/* ============ ESTRUCTURA ============ */
+.deck{position:relative;width:100%;max-width:100%;height:100vh;height:100dvh;overflow:hidden}
+.slide{
+  position:absolute;inset:0;max-width:100%;
+  display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden;
+  justify-content:center;justify-content:safe center;
+  padding:clamp(28px,4.5vh,64px) clamp(28px,5vw,96px);
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .26s var(--ease),visibility .26s;
+  background:
+    radial-gradient(1200px 700px at 88% -12%, #24325F 0%, transparent 58%),
+    radial-gradient(900px 700px at -8% 112%, #101833 0%, transparent 55%),
+    var(--navy);
+}
+.slide.is-active{opacity:1;visibility:visible;pointer-events:auto;transition:opacity .45s var(--ease) .14s,visibility 0s}
+.inner{width:100%;max-width:1240px;margin:0 auto}
+
+/* textura de fondo */
+.slide::before{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:linear-gradient(rgba(247,247,242,.028) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(247,247,242,.028) 1px,transparent 1px);
+  background-size:64px 64px;
+  -webkit-mask-image:radial-gradient(circle at 50% 40%,#000 0%,transparent 78%);
+  mask-image:radial-gradient(circle at 50% 40%,#000 0%,transparent 78%);
+}
+.slide::after{
+  content:"";position:absolute;width:min(420px,100%);height:420px;right:0;top:0;
+  border-radius:50%;background:radial-gradient(circle at 72% 28%,rgba(217,142,115,.16),transparent 68%);
+  pointer-events:none;filter:blur(10px);
+}
+
+/* ============ ANIMACIONES ============ */
+[data-anim]{opacity:0;transform:translateY(26px);transition:opacity .75s var(--ease),transform .75s var(--ease)}
+.is-active [data-anim]{opacity:1;transform:none}
+.is-active [data-anim]{transition-delay:calc(var(--d,0) * 85ms)}
+
+/* ============ TIPOGRAFÍA ============ */
+.eyebrow{
+  font-size:clamp(10px,.78vw,13px);font-weight:700;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--copper);display:flex;align-items:center;gap:12px;margin-bottom:14px;
+}
+.eyebrow::after{content:"";height:1px;flex:1;max-width:120px;background:linear-gradient(90deg,var(--line),transparent)}
+h1{font-size:clamp(38px,6.2vw,86px);font-weight:900;line-height:1.02;letter-spacing:-.03em}
+h2{font-size:clamp(26px,3.5vw,50px);font-weight:800;line-height:1.08;letter-spacing:-.022em;margin-bottom:10px}
+h3{font-size:clamp(15px,1.25vw,19px);font-weight:700;letter-spacing:-.01em}
+.lead{font-size:clamp(15px,1.25vw,20px);color:var(--muted);line-height:1.6;max-width:74ch}
+.small{font-size:clamp(11px,.85vw,14px);color:var(--faint);line-height:1.55}
+.hl{color:var(--copper)}
+strong{color:var(--bone);font-weight:700}
+.mono{font-family:ui-monospace,SFMono-Regular,'SF Mono',Menlo,monospace;font-size:.88em;letter-spacing:-.01em}
+
+/* ============ PORTADA ============ */
+.cover{justify-content:center}
+.cover h1{max-width:16ch}
+.cover .sig{
+  display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;margin-top:38px;
+  padding-top:26px;border-top:1px solid var(--line-soft);
+}
+.sig-name{font-size:clamp(16px,1.5vw,23px);font-weight:800;letter-spacing:-.01em}
+.sig-role{font-size:clamp(11px,.92vw,15px);color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}
+.chip{
+  font-size:clamp(10px,.82vw,13px);font-weight:600;padding:7px 14px;border-radius:99px;
+  background:var(--card);border:1px solid var(--line);color:var(--copper-soft);
+}
+.chip.plain{background:var(--card-2);border-color:var(--line-soft);color:var(--muted)}
+
+/* ============ GRIDS ============ */
+.grid{display:grid;gap:clamp(10px,1.1vw,18px)}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.g6{grid-template-columns:repeat(6,1fr)}
+.g23{grid-template-columns:1.15fr .85fr}
+.g32{grid-template-columns:1fr 1fr 1fr}
+
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:16px;
+  padding:clamp(14px,1.4vw,22px);position:relative;overflow:hidden;
+}
+.card.neutral{background:var(--card-2);border-color:var(--line-soft)}
+.card .k{font-size:clamp(11px,.85vw,13px);font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--copper);margin-bottom:9px}
+.card p{font-size:clamp(13px,1.05vw,16px);color:var(--muted);line-height:1.55}
+.card h3+p{margin-top:7px}
+.card .tag{
+  position:absolute;top:14px;right:14px;font-size:10px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--faint)
+}
+
+/* métricas */
+.metric{display:flex;flex-direction:column;gap:6px}
+.metric .n{
+  font-size:clamp(26px,3.4vw,52px);font-weight:900;line-height:1;letter-spacing:-.035em;
+  background:linear-gradient(180deg,var(--bone) 30%,var(--copper-soft));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.metric .n.copper{background:linear-gradient(180deg,var(--copper-soft),var(--copper-dark));-webkit-background-clip:text;background-clip:text}
+.metric .l{font-size:clamp(12px,.95vw,15px);color:var(--muted);line-height:1.4;font-weight:500}
+
+/* pasos numerados */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(10px,1.1vw,18px)}
+.step{position:relative;padding-top:44px}
+.step .num{
+  position:absolute;top:0;left:0;width:34px;height:34px;border-radius:10px;
+  display:grid;place-items:center;font-weight:800;font-size:14px;
+  background:var(--copper);color:var(--navy-deep);
+}
+.step h3{margin-bottom:7px}
+.step p{font-size:clamp(11.5px,.92vw,14.5px);color:var(--muted);line-height:1.55}
+
+/* antes → después */
+.ba{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:clamp(12px,1.6vw,26px)}
+.ba .arrow{font-size:26px;color:var(--copper);opacity:.7}
+
+/* listas */
+ul.clean{list-style:none;display:flex;flex-direction:column;gap:10px}
+ul.clean li{
+  position:relative;padding-left:22px;font-size:clamp(13px,1.05vw,16.5px);
+  color:var(--muted);line-height:1.55;
+}
+ul.clean li::before{
+  content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;border-radius:2px;
+  background:var(--copper);transform:rotate(45deg)
+}
+ul.clean li.ok::before{background:var(--green)}
+ul.clean li.bad::before{background:var(--red)}
+
+/* callout */
+.callout{
+  border-left:3px solid var(--copper);padding:14px 0 14px 18px;
+  font-size:clamp(13px,1.15vw,19px);font-weight:600;line-height:1.45;color:var(--bone);
+}
+.callout .q{color:var(--copper);font-weight:800}
+
+/* tabla */
+table{width:100%;border-collapse:collapse;font-size:clamp(11px,.9vw,14.5px)}
+th{
+  text-align:left;font-size:clamp(9.5px,.72vw,11.5px);font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--copper);padding:0 12px 10px;border-bottom:1px solid var(--line)
+}
+td{padding:11px 12px;border-bottom:1px solid var(--line-soft);color:var(--muted);vertical-align:top}
+td strong{display:block;color:var(--bone);font-weight:600;margin-bottom:2px}
+tr:last-child td{border-bottom:none}
+
+/* badges de estado */
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:7px;vertical-align:middle}
+.dot.g{background:var(--green)}.dot.a{background:var(--amber)}.dot.r{background:var(--red)}
+.pill{
+  display:inline-block;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  padding:3px 9px;border-radius:99px;border:1px solid var(--line);color:var(--copper-soft);background:var(--card)
+}
+.pill.live{border-color:rgba(95,211,154,.35);color:var(--green);background:rgba(95,211,154,.08)}
+.pill.proto{border-color:rgba(242,193,91,.35);color:var(--amber);background:rgba(242,193,91,.08)}
+.pill.next{border-color:rgba(247,247,242,.18);color:var(--faint);background:var(--card-2)}
+
+/* barras de dominio */
+.skills{display:flex;flex-direction:column;gap:clamp(8px,.9vw,13px)}
+.skill .top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px}
+.skill .nm{font-size:clamp(11px,.92vw,14.5px);font-weight:600;color:var(--bone)}
+.skill .pc{font-size:clamp(10.5px,.85vw,13.5px);font-weight:800;color:var(--copper);font-variant-numeric:tabular-nums}
+.skill .track{height:6px;border-radius:99px;background:rgba(247,247,242,.09);overflow:hidden}
+.skill .fill{
+  height:100%;width:0;border-radius:99px;
+  background:linear-gradient(90deg,var(--copper-dark),var(--copper-soft));
+  transition:width 1s var(--ease);
+}
+.is-active .skill .fill{width:var(--p);transition-delay:calc(var(--d,0) * 85ms + 220ms)}
+@media (prefers-reduced-motion:reduce){.skill .fill{transition:none}}
+
+/* contenedores que se deslizan solos cuando el contenido es ancho */
+.figwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+
+/* SVG */
+.figure{width:100%;display:block}
+.figure text{font-family:'Inter',system-ui,sans-serif}
+
+/* ============ CHROME DEL DECK ============ */
+.progress{position:fixed;top:0;left:0;height:2px;background:var(--copper);z-index:60;transition:width .45s var(--ease);box-shadow:0 0 12px rgba(217,142,115,.6)}
+.hud{
+  position:fixed;bottom:20px;left:0;right:0;z-index:55;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(20px,3vw,40px);pointer-events:none;
+}
+.hud .brand{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--faint)}
+.hud .brand b{color:var(--copper)}
+.nav{display:flex;align-items:center;gap:8px;pointer-events:auto}
+.nav button{
+  width:38px;height:38px;border-radius:10px;border:1px solid var(--line);
+  background:rgba(247,247,242,.07);color:var(--bone);cursor:pointer;font-size:16px;
+  display:grid;place-items:center;transition:.2s;backdrop-filter:blur(6px)
+}
+.nav button:hover{border-color:var(--copper);color:var(--copper);background:var(--card)}
+.nav button:focus-visible{outline:2px solid var(--copper);outline-offset:2px}
+.counter{font-size:11px;font-weight:700;color:var(--faint);min-width:52px;text-align:center;letter-spacing:.08em}
+.counter b{color:var(--bone)}
+
+/* overview */
+.overview{
+  position:fixed;inset:0;z-index:80;background:rgba(14,21,48,.97);backdrop-filter:blur(14px);
+  padding:clamp(24px,4vw,52px);overflow:auto;display:none
+}
+.overview.open{display:block}
+.ov-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px;max-width:1300px;margin:0 auto}
+.ov-item{
+  border:1px solid var(--line-soft);border-radius:12px;padding:14px;cursor:pointer;transition:.2s;
+  background:var(--card-2);min-height:96px;display:flex;flex-direction:column;gap:7px
+}
+.ov-item:hover{border-color:var(--copper);background:var(--card);transform:translateY(-2px)}
+.ov-item .i{font-size:10px;font-weight:800;color:var(--copper);letter-spacing:.1em}
+.ov-item .t{font-size:13px;font-weight:600;line-height:1.35;color:var(--bone)}
+.ov-head{max-width:1300px;margin:0 auto 22px;display:flex;justify-content:space-between;align-items:baseline}
+.ov-head h3{font-size:18px}
+.ov-head span{font-size:11px;color:var(--faint);letter-spacing:.1em;text-transform:uppercase}
+
+.hint{
+  position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:56;
+  font-size:11px;color:var(--faint);letter-spacing:.06em;pointer-events:none;
+  transition:opacity .6s
+}
+kbd{
+  font-family:inherit;font-size:10px;font-weight:700;padding:2px 6px;border-radius:5px;
+  border:1px solid var(--line-soft);background:rgba(247,247,242,.06);color:var(--muted)
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:1000px){
+  .g4,.g6{grid-template-columns:repeat(2,1fr)}
+  .g3,.g32,.steps{grid-template-columns:repeat(2,1fr)}
+  .g23,.g2{grid-template-columns:1fr}
+  .ba{grid-template-columns:1fr;gap:10px}
+  .ba .arrow{transform:rotate(90deg);justify-self:center}
+}
+@media (max-width:620px){
+  .g4,.g6,.g3,.g32,.steps{grid-template-columns:1fr}
+  .slide{padding:24px 20px}
+}
+
+/* ============ IMPRESIÓN / PDF ============ */
+@media print{
+  @page{size:1280px 720px;margin:0}
+  body,html{overflow:visible;height:auto;background:#0E1530}
+  .deck{height:auto;overflow:visible}
+  .slide{
+    position:relative;inset:auto;width:1280px;height:720px;max-width:none;
+    opacity:1!important;visibility:visible!important;page-break-after:always;break-after:page;
+    overflow:visible;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;
+  }
+  .slide .inner{margin:auto}
+  [data-anim]{opacity:1!important;transform:none!important}
+  /* al imprimir manda la retícula de escritorio, no la de pantalla angosta */
+  .g2{grid-template-columns:repeat(2,1fr)}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g4{grid-template-columns:repeat(4,1fr)}
+  .g6{grid-template-columns:repeat(6,1fr)}
+  .g23{grid-template-columns:1.15fr .85fr}
+  .steps{grid-template-columns:repeat(4,1fr)}
+  .ba{grid-template-columns:1fr auto 1fr}
+  .ba .arrow{transform:none}
+  .figwrap{overflow:visible}
+  .hud,.progress,.overview,.hint,.fadebottom,.scrollhint{display:none!important}
+}
+
+/* franja de resultado de negocio */
+.result{
+  margin-top:clamp(12px,1.8vh,22px);display:flex;align-items:center;
+  gap:clamp(10px,1.2vw,18px);padding:clamp(10px,1.1vw,15px) clamp(14px,1.4vw,20px);
+  border-radius:13px;border:1px solid rgba(95,211,154,.30);
+  background:linear-gradient(90deg,rgba(95,211,154,.11),rgba(95,211,154,.02));
+}
+.result .lb{
+  font-size:clamp(9px,.7vw,11px);font-weight:800;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--green);white-space:nowrap;line-height:1.3
+}
+.result p{font-size:clamp(13px,1.05vw,16.5px);color:var(--bone);font-weight:500;line-height:1.45;margin:0}
+.result strong{color:var(--green);font-weight:700}
+
+/* tabla comparativa antes/después */
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:clamp(10px,1.1vw,18px)}
+.vs .col{border-radius:16px;padding:clamp(14px,1.4vw,22px);border:1px solid}
+.vs .col.old{border-color:var(--line-soft);background:var(--card-2)}
+.vs .col.new{border-color:rgba(95,211,154,.30);background:rgba(95,211,154,.06)}
+.vs .col h3{margin-bottom:12px}
+.vs .col.old h3{color:var(--faint)}
+.vs .col.new h3{color:var(--green)}
+.vs li{list-style:none;font-size:clamp(12.5px,1vw,16px);line-height:1.5;padding:8px 0;border-bottom:1px solid var(--line-soft)}
+.vs li:last-child{border-bottom:none}
+.vs .col.old li{color:var(--faint)}
+.vs .col.new li{color:var(--muted)}
+.vs .col.new li strong{color:var(--bone)}
+
+/* entregables */
+.deliver{display:flex;flex-direction:column;gap:7px;margin-top:10px}
+.deliver span{
+  font-size:clamp(12px,.98vw,15.5px);color:var(--muted);line-height:1.45;
+  padding-left:20px;position:relative
+}
+.deliver span::before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:800;font-size:.95em}
+
+/* aviso de contenido debajo del pliegue (solo aparece si de verdad sobra) */
+.scrollhint{
+  position:fixed;left:50%;bottom:74px;z-index:58;display:none;white-space:nowrap;
+  font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--copper);background:rgba(14,21,48,.9);border:1px solid var(--line);
+  border-radius:99px;padding:7px 15px;backdrop-filter:blur(8px);pointer-events:none;
+  transform:translateX(-50%);animation:bob 1.9s ease-in-out infinite;
+}
+.scrollhint.show{display:block}
+@keyframes bob{
+  0%,100%{transform:translateX(-50%) translateY(0)}
+  50%{transform:translateX(-50%) translateY(5px)}
+}
+@media (prefers-reduced-motion:reduce){.scrollhint{animation:none}}
+
+/* degradado inferior: el contenido se desvanece bajo la barra en vez de cortarse */
+.fadebottom{
+  position:fixed;left:0;right:0;bottom:0;height:130px;z-index:54;pointer-events:none;display:none;
+  background:linear-gradient(to top,#141C38 22%,rgba(20,28,56,.82) 58%,rgba(20,28,56,0) 100%);
+}
+
+/* ===== MÓVIL ===== */
+@media (max-width:820px){
+  .slide{padding:22px 18px 92px}      /* deja aire para la barra inferior */
+  .hud{bottom:16px}
+  .hud .brand{display:none}           /* el texto largo se enredaba con el contenido */
+  .nav{margin-left:auto}
+  .hint{display:none}
+  .fadebottom{display:block}
+  h1{font-size:clamp(30px,8.5vw,44px)}
+  h2{font-size:clamp(23px,6.4vw,32px)}
+  .callout{font-size:15px}
+  .metric .n{font-size:clamp(28px,9vw,40px)}
+  .figure{min-width:560px}            /* los diagramas no se comprimen: se deslizan */
+  .figwrap table{min-width:620px}     /* la tabla tampoco: se desliza dentro de su tarjeta */
+}
+
+@media screen{
+/* ============================================================
+   MODO COMPACTO — se activa por JS cuando la página se está
+   viendo en un teléfono, incluso si el visor la renderiza a
+   ancho de escritorio y la reduce para que quepa.
+   Las medidas van en vw a propósito: así el tamaño REAL en
+   pantalla depende del ancho del teléfono y no del ancho al
+   que el visor decida dibujar la página.
+   ============================================================ */
+:root.compacto body{-webkit-text-size-adjust:100%}
+:root.compacto .slide{padding:4.5vw 4.5vw 22vw}
+:root.compacto .inner{max-width:none}
+
+:root.compacto h1{font-size:8.4vw !important;line-height:1.06}
+:root.compacto h2{font-size:6.2vw !important;line-height:1.12;margin-bottom:1.4vw}
+:root.compacto h3{font-size:4vw}
+:root.compacto .eyebrow{font-size:2.6vw;margin-bottom:2.4vw;letter-spacing:.2em}
+:root.compacto .lead{font-size:3.9vw;line-height:1.55;max-width:none}
+:root.compacto .small{font-size:3vw}
+:root.compacto .chip{font-size:3vw;padding:1.8vw 3.4vw}
+:root.compacto .card{padding:4vw;border-radius:3.4vw}
+:root.compacto .card p{font-size:3.5vw;line-height:1.5}
+:root.compacto .card .k{font-size:2.9vw;margin-bottom:2vw}
+:root.compacto ul.clean{gap:2.4vw}
+:root.compacto ul.clean li{font-size:3.5vw;line-height:1.5;padding-left:5.4vw}
+:root.compacto ul.clean li::before{width:1.8vw;height:1.8vw;top:.6em}
+:root.compacto .metric .n{font-size:9vw}
+:root.compacto .metric .l{font-size:3.1vw;line-height:1.4}
+:root.compacto .callout{font-size:4vw;padding:3.4vw 0 3.4vw 4vw;border-left-width:.8vw}
+:root.compacto .result{padding:3.4vw 4vw;gap:3vw;border-radius:3vw}
+:root.compacto .result .lb{font-size:2.6vw}
+:root.compacto .result p{font-size:3.5vw;line-height:1.5}
+:root.compacto .deliver span{font-size:3.4vw;padding-left:5vw}
+:root.compacto .vs .col{padding:4vw;border-radius:3.4vw}
+:root.compacto .vs li{font-size:3.4vw;padding:2.2vw 0}
+:root.compacto .sig-name{font-size:4.6vw}
+:root.compacto .sig-role{font-size:3.1vw}
+:root.compacto table{font-size:3.3vw}
+:root.compacto th{font-size:2.7vw}
+:root.compacto td{padding:2.6vw 2.4vw}
+
+/* una sola columna: en un teléfono no hay espacio para rejillas */
+:root.compacto .grid{gap:3vw}
+:root.compacto .g2,:root.compacto .g23,:root.compacto .g3,:root.compacto .g32,
+:root.compacto .g4,:root.compacto .g6,:root.compacto .steps,:root.compacto .vs{grid-template-columns:1fr}
+:root.compacto .ba{grid-template-columns:1fr;gap:2.4vw}
+:root.compacto .ba .arrow{transform:rotate(90deg);justify-self:center}
+:root.compacto .step{padding-top:11vw}
+:root.compacto .step .num{width:8vw;height:8vw;border-radius:2.4vw;font-size:3.6vw}
+
+/* los dibujos no se aplastan: se deslizan dentro de su marco */
+:root.compacto .figwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+:root.compacto .figwrap .figure{min-width:150vw}
+:root.compacto .figure{min-width:0;width:100%;height:auto}
+:root.compacto .figwrap table{min-width:170vw}
+
+/* barra inferior y avisos, proporcionales */
+:root.compacto .hud{bottom:3.4vw;padding:0 4vw}
+:root.compacto .hud .brand{display:none}
+:root.compacto .nav{margin-left:auto;gap:2vw}
+:root.compacto .nav button{width:10vw;height:10vw;border-radius:2.6vw;font-size:4.4vw}
+:root.compacto .counter{font-size:3.2vw;min-width:14vw}
+:root.compacto .hint{display:none}
+:root.compacto .scrollhint{bottom:16vw;font-size:2.9vw;padding:1.8vw 4vw}
+:root.compacto .ov-item .t{font-size:3.4vw}
+:root.compacto .ov-item .i{font-size:2.7vw}
+:root.compacto .ov-grid{grid-template-columns:1fr 1fr}
+
+/* en teléfono se lee de arriba hacia abajo: centrar recortaría el inicio */
+:root.compacto .slide{justify-content:flex-start}
+:root.compacto .cover .figure{max-height:46vh}
+:root.compacto .chips{gap:2vw}
+}
+
+/* --- versiones verticales de los diagramas, solo en teléfono --- */
+.solo-compacto{display:none}
+:root.compacto .solo-compacto{display:block}
+:root.compacto .solo-ancho{display:none}
+
+:root.compacto .pila{display:flex;flex-direction:column;gap:2.6vw;margin-top:3vw}
+:root.compacto .isla{
+  border:1px dashed rgba(247,247,242,.18);border-radius:3vw;padding:3.4vw 4vw;
+  display:flex;justify-content:space-between;align-items:baseline;gap:3vw;background:rgba(247,247,242,.035)
+}
+:root.compacto .isla b{font-size:3.9vw;font-weight:700}
+:root.compacto .isla span{font-size:3.1vw;color:var(--faint);text-align:right}
+:root.compacto .nodo{
+  border:1px solid rgba(217,142,115,.45);background:rgba(217,142,115,.12);
+  border-radius:3vw;padding:3.4vw 4vw;font-size:3.9vw;font-weight:700;text-align:center
+}
+:root.compacto .flechaAbajo{text-align:center;color:var(--copper);font-size:6vw;line-height:1;margin:1.6vw 0}
+:root.compacto .hub{
+  border:1.5px solid rgba(217,142,115,.7);background:rgba(217,142,115,.16);
+  border-radius:3.4vw;padding:4.6vw;text-align:center
+}
+:root.compacto .hub b{display:block;font-size:6vw;font-weight:900}
+:root.compacto .hub span{display:block;font-size:3.4vw;color:var(--copper-soft);margin-top:1.4vw}
+:root.compacto .remate{
+  border:1px solid rgba(95,211,154,.4);background:rgba(95,211,154,.10);border-radius:3vw;
+  padding:3.4vw 4vw;font-size:3.6vw;font-weight:700;text-align:center
+}
+:root.compacto .cierre{font-size:3.7vw;color:var(--muted);margin-top:3.4vw;line-height:1.5}
+:root.compacto .alerta{font-size:3.7vw;color:var(--red);font-weight:700;margin-top:1.6vw;line-height:1.5}
+
+/* barras de horas */
+:root.compacto .barra{margin-top:3.4vw}
+:root.compacto .barra .fila{display:flex;justify-content:space-between;align-items:baseline;gap:3vw;margin-bottom:1.6vw}
+:root.compacto .barra .nom{font-size:3.6vw;font-weight:600}
+:root.compacto .barra .val{font-size:3.9vw;font-weight:800;white-space:nowrap}
+:root.compacto .barra .pista{height:2.6vw;border-radius:99px;background:rgba(247,247,242,.09);overflow:hidden;display:flex}
+:root.compacto .barra .lleno{background:var(--copper);height:100%}
+:root.compacto .barra .ext{background:var(--copper);opacity:.32;height:100%}
+:root.compacto .barra .nota{font-size:2.9vw;color:var(--faint);margin-top:2.6vw}
+
+/* embudo vertical */
+:root.compacto .paso{
+  border-radius:3vw;padding:3.6vw 4vw;margin-bottom:2.2vw;
+  display:flex;justify-content:space-between;align-items:baseline;gap:3vw
+}
+:root.compacto .paso b{font-size:4.4vw;font-weight:900}
+:root.compacto .paso span{font-size:3.1vw;text-align:right}
+:root.compacto .paso.p1{background:var(--copper);color:#141C38}
+:root.compacto .paso.p1 span{color:rgba(20,28,56,.75)}
+:root.compacto .paso.p2{background:rgba(217,142,115,.32)}
+:root.compacto .paso.p3{background:rgba(217,142,115,.18)}
+:root.compacto .paso.p4{background:rgba(95,211,154,.24)}
+:root.compacto .paso.p4 span{color:var(--green)}
+
+/* disperso vs concentrado */
+:root.compacto .panel{border-radius:3vw;padding:4vw;margin-bottom:2.6vw}
+:root.compacto .panel.malo{background:rgba(247,247,242,.04);border:1px solid rgba(247,247,242,.12)}
+:root.compacto .panel.bueno{background:rgba(95,211,154,.06);border:1px solid rgba(95,211,154,.3)}
+:root.compacto .panel .tit{font-size:3vw;font-weight:800;letter-spacing:.16em;margin-bottom:3vw}
+:root.compacto .panel.malo .tit{color:var(--faint)}
+:root.compacto .panel.bueno .tit{color:var(--green)}
+:root.compacto .panel .piezas{display:flex;align-items:flex-end;gap:1vw;height:14vw;margin-bottom:3vw}
+:root.compacto .panel.malo .piezas i{flex:1;background:var(--red);opacity:.55;border-radius:1vw}
+:root.compacto .panel.bueno .piezas i{flex:1;background:var(--green);opacity:.8;border-radius:1.4vw}
+:root.compacto .panel p{font-size:3.4vw;color:var(--muted);line-height:1.5;margin-top:1.4vw}
+
+/* etapas del plan */
+:root.compacto .etapa{display:flex;gap:3.4vw;align-items:flex-start;margin-bottom:3.4vw}
+:root.compacto .etapa .num{
+  flex:0 0 auto;width:8.4vw;height:8.4vw;border-radius:50%;background:var(--copper);color:#141C38;
+  display:grid;place-items:center;font-size:4vw;font-weight:900
+}
+:root.compacto .etapa.fin .num{background:var(--green)}
+:root.compacto .etapa b{display:block;font-size:4.4vw;font-weight:800}
+:root.compacto .etapa.fin b{color:var(--green)}
+:root.compacto .etapa span{display:block;font-size:3.4vw;color:var(--muted);margin-top:.8vw;line-height:1.45}
+</style></head>
+<body>
+
+<div class="progress" id="progress" style="width:0"></div>
+
+<div class="deck" id="deck">
+
+<!-- ============ 1 · PORTADA ============ -->
+<section class="slide cover is-active">
+  <div class="inner">
+    <div class="grid g23" style="align-items:center;gap:clamp(20px,3vw,48px)">
+      <div>
+        <div class="eyebrow" data-anim style="--d:0">Automatización con IA para empresas · 2026</div>
+        <h1 data-anim style="--d:1;font-size:clamp(32px,5.4vw,74px)">La empresa<br>que se <span class="hl">mide sola</span>.</h1>
+        <p class="lead" data-anim style="--d:2;margin-top:20px">
+          Su operación ya genera todos los días la información que necesita para gastar menos y
+          vender más. El problema nunca es que falte el dato: es que vive repartido en áreas que
+          no se hablan entre sí.
+        </p>
+        <div class="chips" data-anim style="--d:3">
+          <span class="chip">Menos gasto</span>
+          <span class="chip">Menos horas</span>
+          <span class="chip">Más venta cerrada</span>
+        </div>
+      </div>
+
+      <div data-anim style="--d:4">
+      <svg class="figure" viewBox="0 0 460 400" role="img" aria-label="Información dispersa que converge en un solo dashboard">
+        <defs>
+          <linearGradient id="hg" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#D98E73" stop-opacity=".30"/>
+            <stop offset="100%" stop-color="#D98E73" stop-opacity=".06"/>
+          </linearGradient>
+        </defs>
+        <!-- puntos dispersos que convergen -->
+        <g stroke="#D98E73" stroke-opacity=".28" stroke-width="1.2" fill="none">
+          <path d="M40 40 C 160 60, 190 150, 230 235"/>
+          <path d="M180 24 C 210 90, 215 160, 232 235"/>
+          <path d="M330 44 C 300 110, 260 170, 236 235"/>
+          <path d="M424 96 C 360 140, 280 190, 240 236"/>
+          <path d="M28 150 C 120 170, 190 210, 228 238"/>
+          <path d="M420 190 C 350 205, 280 225, 244 240"/>
+        </g>
+        <g fill="#D98E73">
+          <circle cx="40" cy="40" r="5" opacity=".85"/><circle cx="180" cy="24" r="4" opacity=".7"/>
+          <circle cx="330" cy="44" r="5" opacity=".8"/><circle cx="424" cy="96" r="4" opacity=".65"/>
+          <circle cx="28" cy="150" r="4" opacity=".7"/><circle cx="420" cy="190" r="5" opacity=".8"/>
+        </g>
+        <g fill="rgba(247,247,242,.32)">
+          <circle cx="96" cy="86" r="2.5"/><circle cx="256" cy="70" r="2.5"/>
+          <circle cx="376" cy="140" r="2.5"/><circle cx="92" cy="206" r="2.5"/>
+          <circle cx="300" cy="176" r="2.5"/>
+        </g>
+        <!-- el dashboard -->
+        <rect x="118" y="238" width="236" height="132" rx="16" fill="url(#hg)" stroke="#D98E73" stroke-opacity=".55"/>
+        <rect x="138" y="258" width="86" height="8" rx="4" fill="#F7F7F2" opacity=".55"/>
+        <rect x="138" y="278" width="196" height="30" rx="7" fill="#D98E73" opacity=".22"/>
+        <rect x="138" y="318" width="58" height="34" rx="7" fill="#5FD39A" opacity=".22"/>
+        <rect x="206" y="318" width="58" height="34" rx="7" fill="#D98E73" opacity=".18"/>
+        <rect x="274" y="318" width="60" height="34" rx="7" fill="#F7F7F2" opacity=".10"/>
+        <text x="236" y="392" text-anchor="middle" fill="rgba(247,247,242,.5)" font-size="12.5" font-style="italic">todo en una sola pantalla, siempre al día</text>
+      </svg>
+      </div>
+    </div>
+
+    <div class="sig" data-anim style="--d:5">
+      <div>
+        <div class="sig-name">Gary Morales</div>
+        <div class="sig-role">Growth &amp; Automatización con IA · Marketing, CRM e Inteligencia de Negocio</div>
+      </div>
+      <div class="sig-role" style="margin-left:auto">Guayaquil, Ecuador</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2 · CINCO ISLAS ============ -->
+<section class="slide">
+  <div class="inner">
+    <div class="eyebrow" data-anim style="--d:0">El punto de partida</div>
+    <h2 data-anim style="--d:1">Cinco áreas que producen datos.<br>Ninguna se habla con la otra.</h2>
+
+    <div class="solo-compacto" data-anim style="--d:2">
+      <div class="pila">
+        <div class="isla"><b>Bodegas</b><span>stock por su lado</span></div>
+        <div class="isla"><b>Compras</b><span>reposición por criterio</span></div>
+        <div class="isla"><b>Publicidad</b><span>cada plataforma aparte</span></div>
+        <div class="isla"><b>Tienda en línea</b><span>sin integrar</span></div>
+        <div class="isla"><b>Atención</b><span>sin registro medible</span></div>
+      </div>
+      <p class="cierre">Cada área tiene razón por separado. Juntas, no cuadran.</p>
+      <p class="alerta">Y la decisión se toma con el dato de la semana pasada.</p>
+    </div>
+    <div class="figwrap solo-ancho" data-anim style="--d:2;margin-top:clamp(14px,2.4vh,30px)">
+    <svg class="figure" viewBox="0 0 1240 300" role="img" aria-label="Cinco áreas operando de forma aislada">
+      <g font-size="13" font-weight="700" fill="#F7F7F2" text-anchor="middle">
+        <g>
+          <rect x="20" y="60" width="210" height="112" rx="16" fill="rgba(247,247,242,.05)" stroke="rgba(247,247,242,.14)" stroke-dasharray="4 4"/>
+          <circle cx="125" cy="98" r="17" fill="rgba(247,247,242,.08)"/>
+          <rect x="117" y="90" width="16" height="12" rx="2" fill="none" stroke="#9BA4BF" stroke-width="1.6"/>
+          <path d="M117 96 h16" stroke="#9BA4BF" stroke-width="1.6"/>
+          <text x="125" y="140">Bodegas</text>
+          <text x="125" y="158" font-size="11" font-weight="500" fill="rgba(247,247,242,.45)">stock por su lado</text>
+        </g>
+        <g>
+          <rect x="266" y="60" width="210" height="112" rx="16" fill="rgba(247,247,242,.05)" stroke="rgba(247,247,242,.14)" stroke-dasharray="4 4"/>
+          <circle cx="371" cy="98" r="17" fill="rgba(247,247,242,.08)"/>
+          <path d="M363 92 h16 M363 98 h16 M363 104 h10" stroke="#9BA4BF" stroke-width="1.6"/>
+          <text x="371" y="140">Compras</text>
+          <text x="371" y="158" font-size="11" font-weight="500" fill="rgba(247,247,242,.45)">reposición por criterio</text>
+        </g>
+        <g>
+          <rect x="512" y="60" width="210" height="112" rx="16" fill="rgba(247,247,242,.05)" stroke="rgba(247,247,242,.14)" stroke-dasharray="4 4"/>
+          <circle cx="617" cy="98" r="17" fill="rgba(247,247,242,.08)"/>
+          <path d="M609 104 l6 -8 l5 5 l6 -9" stroke="#9BA4BF" stroke-width="1.8" fill="none"/>
+          <text x="617" y="140">Publicidad</text>
+          <text x="617" y="158" font-size="11" font-weight="500" fill="rgba(247,247,242,.45)">cada plataforma aparte</text>
+        </g>
+        <g>
+          <rect x="758" y="60" width="210" height="112" rx="16" fill="rgba(247,247,242,.05)" stroke="rgba(247,247,242,.14)" stroke-dasharray="4 4"/>
+          <circle cx="863" cy="98" r="17" fill="rgba(247,247,242,.08)"/>
+          <path d="M855 93 h16 l-2 11 h-12 z" stroke="#9BA4BF" stroke-width="1.6" fill="none"/>
+          <text x="863" y="140">Tienda en línea</text>
+          <text x="863" y="158" font-size="11" font-weight="500" fill="rgba(247,247,242,.45)">sin integrar</text>
+        </g>
+        <g>
+          <rect x="1004" y="60" width="216" height="112" rx="16" fill="rgba(247,247,242,.05)" stroke="rgba(247,247,242,.14)" stroke-dasharray="4 4"/>
+          <circle cx="1112" cy="98" r="17" fill="rgba(247,247,242,.08)"/>
+          <path d="M1104 93 h16 v10 h-10 l-6 5 z" stroke="#9BA4BF" stroke-width="1.6" fill="none"/>
+          <text x="1112" y="140">Atención</text>
+          <text x="1112" y="158" font-size="11" font-weight="500" fill="rgba(247,247,242,.45)">sin registro medible</text>
+        </g>
+      </g>
+      <text x="620" y="230" text-anchor="middle" fill="rgba(247,247,242,.55)" font-size="15">
+        Cada área tiene razón por separado. Juntas, no cuadran.
+      </text>
+      <text x="620" y="262" text-anchor="middle" fill="#F07A6A" font-size="14" font-weight="700">
+        Y la decisión se toma con el dato de la semana pasada.
+      </text>
+    </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3 · UN SOLO SISTEMA ============ -->
+<section class="slide">
+  <div class="inner">
+    <div class="eyebrow" data-anim style="--d:0">La solución</div>
+    <h2 data-anim style="--d:1">Las mismas cinco áreas,<br>conectadas a <span class="hl">un solo sistema</span>.</h2>
+
+    <div class="solo-compacto" data-anim style="--d:2">
+      <div class="pila" style="display:grid;grid-template-columns:1fr 1fr">
+        <div class="nodo">Bodegas</div>
+        <div class="nodo">Compras</div>
+        <div class="nodo">Publicidad</div>
+        <div class="nodo">Tienda en línea</div>
+        <div class="nodo" style="grid-column:1 / -1">Atención al cliente</div>
+      </div>
+      <div class="flechaAbajo">↓</div>
+      <div class="hub"><b>Un dashboard</b><span>actualización automática, todos los días</span></div>
+      <div class="flechaAbajo">↓</div>
+      <div class="remate">Decisiones con el dato de hoy, no con el de la semana pasada</div>
+    </div>
+    <div class="figwrap solo-ancho" data-anim style="--d:2;margin-top:clamp(12px,2vh,24px)">
+    <svg class="figure" viewBox="0 0 1240 330" role="img" aria-label="Las cinco áreas conectadas a un dashboard central">
+      <defs>
+        <radialGradient id="hub">
+          <stop offset="0%" stop-color="#D98E73" stop-opacity=".34"/>
+          <stop offset="100%" stop-color="#D98E73" stop-opacity=".08"/>
+        </radialGradient>
+      </defs>
+      <g stroke="#D98E73" stroke-opacity=".55" stroke-width="1.8" fill="none">
+        <path d="M150 96 C 300 96, 420 150, 520 176"/>
+        <path d="M370 96 C 430 110, 470 150, 524 172"/>
+        <path d="M620 100 L 620 140"/>
+        <path d="M870 96 C 810 110, 770 150, 716 172"/>
+        <path d="M1090 96 C 940 96, 820 150, 720 176"/>
+      </g>
+      <g font-size="13" font-weight="700" fill="#F7F7F2" text-anchor="middle">
+        <g><rect x="60" y="44" width="180" height="52" rx="13" fill="rgba(217,142,115,.12)" stroke="#D98E73" stroke-opacity=".45"/><text x="150" y="76">Bodegas</text></g>
+        <g><rect x="280" y="44" width="180" height="52" rx="13" fill="rgba(217,142,115,.12)" stroke="#D98E73" stroke-opacity=".45"/><text x="370" y="76">Compras</text></g>
+        <g><rect x="530" y="44" width="180" height="52" rx="13" fill="rgba(217,142,115,.12)" stroke="#D98E73" stroke-opacity=".45"/><text x="620" y="76">Publicidad</text></g>
+        <g><rect x="780" y="44" width="180" height="52" rx="13" fill="rgba(217,142,115,.12)" stroke="#D98E73" stroke-opacity=".45"/><text x="870" y="76">Tienda en línea</text></g>
+        <g><rect x="1000" y="44" width="180" height="52" rx="13" fill="rgba(217,142,115,.12)" stroke="#D98E73" stroke-opacity=".45"/><text x="1090" y="76">Atención</text></g>
+      </g>
+
+      <rect x="440" y="146" width="360" height="92" rx="18" fill="url(#hub)" stroke="#D98E73" stroke-opacity=".7" stroke-width="1.6"/>
+      <text x="620" y="182" text-anchor="middle" fill="#F7F7F2" font-size="20" font-weight="900">Un dashboard</text>
+      <text x="620" y="210" text-anchor="middle" fill="#E9B49F" font-size="13">actualización automática, todos los días</text>
+
+      <g stroke="#5FD39A" stroke-opacity=".55" stroke-width="1.6" fill="none">
+        <path d="M620 244 L 620 272"/>
+      </g>
+      <g text-anchor="middle">
+        <rect x="380" y="272" width="480" height="42" rx="12" fill="rgba(95,211,154,.10)" stroke="#5FD39A" stroke-opacity=".4"/>
+        <text x="620" y="299" fill="#F7F7F2" font-size="14" font-weight="700">Decisiones con el dato de hoy, no con el de la semana pasada</text>
+      </g>
+    </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4 · QUÉ SE AUTOMATIZA ============ -->
+<section class="slide">
+  <div class="inner">
+    <div class="eyebrow" data-anim style="--d:0">Qué se automatiza</div>
+    <h2 data-anim style="--d:1">Trabajo que hoy se hace a mano<br>y <span class="hl">pasa a ser automático</span>.</h2>
+
+    <div class="grid g3" style="margin-top:clamp(16px,2.6vh,32px)">
+      <div class="card" data-anim style="--d:2">
+        <div class="k">Bodegas</div>
+        <p>Stock de todas las agencias en una sola vista, al día, con aviso de quiebre y de producto sin movimiento.</p>
+      </div>
+      <div class="card" data-anim style="--d:3">
+        <div class="k">Compras</div>
+        <p>La reposición se calcula <strong>de acuerdo a la capacidad de venta de cada agencia</strong>, no por criterio ni por reclamo.</p>
+      </div>
+      <div class="card" data-anim style="--d:4">
+        <div class="k">Publicidad</div>
+        <p>Inversión, conversaciones, cotizaciones y venta en una sola cadena — por campaña, por línea de producto y por agencia.</p>
+      </div>
+      <div class="card" data-anim style="--d:5">
+        <div class="k">Tienda en línea</div>
+        <p><strong>Se integra</strong> al inventario y a la medición, para saber cuánto aporta y qué cuesta cada pedido. No se rediseña ni se opera: se conecta.</p>
+      </div>
+      <div class="card" data-anim style="--d:6">
+        <div class="k">Atención al cliente</div>
+        <p>Tiempo de respuesta, seguimiento, cotizaciones y cierre por asesor y por agencia, revisados todos los días.</p>
+      </div>
+      <div class="card" data-anim style="--d:7;border-color:rgba(95,211,154,.34);background:rgba(95,211,154,.07)">
+        <div class="k" style="color:var(--green)">Sin reemplazar nada</div>
+        <p>No se cambia de sistema y no se migra información. <strong>Se conecta lo que la empresa ya paga.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5 · TIEMPO ============ -->
+<section class="slide">
+  <div class="inner">
+    <div class="eyebrow" data-anim style="--d:0">Lo que se recupera · Tiempo</div>
+    <h2 data-anim style="--d:1">Horas que hoy se van<br>en armar cifras a mano.</h2>
+
+    <div class="solo-compacto barra" data-anim style="--d:2">
+      <div class="fila"><span class="nom">Cuadrar inventario entre agencias</span><span class="val">30–50 h</span></div>
+      <div class="pista"><i class="lleno" style="width:60%"></i><i class="ext" style="width:40%"></i></div>
+      <div class="fila" style="margin-top:3.4vw"><span class="nom">Consolidar reportes de venta</span><span class="val">20–30 h</span></div>
+      <div class="pista"><i class="lleno" style="width:40%"></i><i class="ext" style="width:20%"></i></div>
+      <div class="fila" style="margin-top:3.4vw"><span class="nom">Armar el requerimiento de compra</span><span class="val">15–25 h</span></div>
+      <div class="pista"><i class="lleno" style="width:30%"></i><i class="ext" style="width:20%"></i></div>
+      <div class="fila" style="margin-top:3.4vw"><span class="nom">Revisar desempeño de asesores</span><span class="val">10–15 h</span></div>
+      <div class="pista"><i class="lleno" style="width:20%"></i><i class="ext" style="width:10%"></i></div>
+      <p class="nota">Tramo sólido: mínimo estimado · tramo tenue: hasta el máximo</p>
+    </div>
+    <div class="figwrap solo-ancho" data-anim style="--d:2;margin-top:clamp(12px,2vh,26px)">
+    <svg class="figure" viewBox="0 0 1240 300" role="img" aria-label="Horas mensuales recuperables por área">
+      <text x="0" y="16" fill="rgba(247,247,242,.5)" font-size="12">Horas al mes que deja de consumir cada tarea · estimación por rango</text>
+      <g font-size="14" fill="#F7F7F2" font-weight="600">
+        <text x="0" y="62">Cuadrar inventario entre agencias</text>
+        <text x="0" y="122">Consolidar reportes de venta</text>
+        <text x="0" y="182">Armar el requerimiento de compra</text>
+        <text x="0" y="242">Revisar desempeño de asesores</text>
+      </g>
+      <!-- barras: tramo sólido = mínimo, tramo tenue = hasta el máximo -->
+      <g>
+        <rect x="420" y="44" width="372" height="22" rx="4" fill="#D98E73"/>
+        <rect x="794" y="44" width="246" height="22" rx="4" fill="#D98E73" opacity=".32"/>
+        <text x="1058" y="61" fill="#F7F7F2" font-size="15" font-weight="800">30–50 h</text>
+
+        <rect x="420" y="104" width="248" height="22" rx="4" fill="#D98E73"/>
+        <rect x="670" y="104" width="122" height="22" rx="4" fill="#D98E73" opacity=".32"/>
+        <text x="1058" y="121" fill="#F7F7F2" font-size="15" font-weight="800">20–30 h</text>
+
+        <rect x="420" y="164" width="186" height="22" rx="4" fill="#D98E73"/>
+        <rect x="608" y="164" width="124" height="22" rx="4" fill="#D98E73" opacity=".32"/>
+        <text x="1058" y="181" fill="#F7F7F2" font-size="15" font-weight="800">15–25 h</text>
+
+        <rect x="420" y="224" width="124" height="22" rx="4" fill="#D98E73"/>
+        <rect x="546" y="224" width="62" height="22" rx="4" fill="#D98E73" opacity=".32"/>
+        <text x="1058" y="241" fill="#F7F7F2" font-size="15" font-weight="800">10–15 h</text>
+      </g>
+      <text x="420" y="286" fill="rgba(247,247,242,.42)" font-size="11.5">tramo sólido: mínimo estimado · tramo tenue: hasta el máximo</text>
+    </svg>
+    </div>
+
+    <div class="grid g2" style="margin-top:clamp(10px,1.6vh,20px)">
+      <div class="card" data-anim style="--d:3;border-color:rgba(95,211,154,.34)">
+        <div class="k" style="color:var(--green)">En total</div>
+        <div class="metric" style="margin-top:6px">
+          <span class="n" style="background:linear-gradient(180deg,#F7F7F2,#5FD39A);-webkit-background-clip:text;background-clip:text">75 a 120 h</span>
+          <span class="l">al mes — el equivalente a media persona a tiempo completo dedicada solo a recopilar información</span>
+        </div>
+      </div>
+      <div class="card" data-anim style="--d:4">
+        <div class="k">Y lo que vale más</div>
+        <p>No es solo el ahorro: es que <strong>la información deja de llegar tarde</strong>. En un negocio de rotación, decidir con el dato de hoy en lugar del de la semana pasada es, directamente, la venta.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6 · DINERO ============ -->
+<section class="slide">
+  <div class="inner">
+    <div class="eyebrow" data-anim style="--d:0">Lo que se recupera · Inversión publicitaria</div>
+    <h2 data-anim style="--d:1">El mismo presupuesto de Meta y Google,<br><span class="hl">rindiendo más</span>.</h2>
+
+    <div class="solo-compacto" data-anim style="--d:2">
+      <div class="panel malo">
+        <div class="tit">DISPERSO</div>
+        <div class="piezas"><i style="height:70%"></i><i style="height:50%"></i><i style="height:40%"></i><i style="height:58%"></i><i style="height:34%"></i><i style="height:48%"></i><i style="height:30%"></i><i style="height:54%"></i><i style="height:38%"></i><i style="height:26%"></i><i style="height:44%"></i><i style="height:36%"></i><i style="height:52%"></i><i style="height:28%"></i><i style="height:42%"></i></div>
+        <p>Ninguna pieza alcanza volumen para funcionar bien.</p>
+        <p>Se compite consigo mismo y el costo por resultado sube.</p>
+      </div>
+      <div class="panel bueno">
+        <div class="tit">CONCENTRADO</div>
+        <div class="piezas"><i style="height:100%"></i><i style="height:88%"></i><i style="height:95%"></i><i style="height:78%"></i><i style="height:88%"></i><i style="height:70%"></i></div>
+        <p>Cada pieza recibe presupuesto suficiente para rendir.</p>
+        <p>Lo que no funciona se corta y financia lo que sí.</p>
+      </div>
+    </div>
+    <div class="figwrap solo-ancho" data-anim style="--d:2;margin-top:clamp(12px,2vh,24px)">
+    <svg class="figure" viewBox="0 0 1240 236" role="img" aria-label="Presupuesto disperso frente a presupuesto concentrado">
+      <text x="0" y="18" fill="rgba(247,247,242,.5)" font-size="12" font-style="italic">El mismo presupuesto mensual de Meta, Google o TikTok, repartido de dos maneras · representación ilustrativa</text>
+
+      <rect x="0" y="34" width="584" height="180" rx="16" fill="rgba(247,247,242,.04)" stroke="rgba(247,247,242,.12)"/>
+      <text x="28" y="66" fill="rgba(247,247,242,.62)" font-size="13" font-weight="800" letter-spacing="1.6">DISPERSO</text>
+      <g fill="#F07A6A" opacity=".55">
+        <rect x="28" y="86" width="10" height="40" rx="3"/><rect x="46" y="96" width="10" height="30" rx="3"/>
+        <rect x="64" y="102" width="10" height="24" rx="3"/><rect x="82" y="92" width="10" height="34" rx="3"/>
+        <rect x="100" y="106" width="10" height="20" rx="3"/><rect x="118" y="98" width="10" height="28" rx="3"/>
+        <rect x="136" y="108" width="10" height="18" rx="3"/><rect x="154" y="94" width="10" height="32" rx="3"/>
+        <rect x="172" y="104" width="10" height="22" rx="3"/><rect x="190" y="110" width="10" height="16" rx="3"/>
+        <rect x="208" y="100" width="10" height="26" rx="3"/><rect x="226" y="106" width="10" height="20" rx="3"/>
+        <rect x="244" y="96" width="10" height="30" rx="3"/><rect x="262" y="110" width="10" height="16" rx="3"/>
+        <rect x="280" y="102" width="10" height="24" rx="3"/><rect x="298" y="108" width="10" height="18" rx="3"/>
+        <rect x="316" y="98" width="10" height="28" rx="3"/><rect x="334" y="112" width="10" height="14" rx="3"/>
+        <rect x="352" y="104" width="10" height="22" rx="3"/><rect x="370" y="100" width="10" height="26" rx="3"/>
+        <rect x="388" y="110" width="10" height="16" rx="3"/><rect x="406" y="106" width="10" height="20" rx="3"/>
+        <rect x="424" y="96" width="10" height="30" rx="3"/><rect x="442" y="112" width="10" height="14" rx="3"/>
+        <rect x="460" y="102" width="10" height="24" rx="3"/><rect x="478" y="108" width="10" height="18" rx="3"/>
+        <rect x="496" y="100" width="10" height="26" rx="3"/><rect x="514" y="110" width="10" height="16" rx="3"/>
+        <rect x="532" y="104" width="10" height="22" rx="3"/><rect x="550" y="98" width="10" height="28" rx="3"/>
+      </g>
+      <text x="28" y="158" fill="rgba(247,247,242,.72)" font-size="13">Ninguna pieza alcanza volumen para funcionar bien.</text>
+      <text x="28" y="180" fill="rgba(247,247,242,.72)" font-size="13">Se compite consigo mismo y el costo por resultado sube.</text>
+      <text x="28" y="202" fill="rgba(247,247,242,.72)" font-size="13">Nadie alcanza a revisarlo todo, así que casi nada se revisa.</text>
+
+      <text x="608" y="130" fill="#D98E73" font-size="26">→</text>
+
+      <rect x="656" y="34" width="584" height="180" rx="16" fill="rgba(95,211,154,.06)" stroke="rgba(95,211,154,.30)"/>
+      <text x="684" y="66" fill="#5FD39A" font-size="13" font-weight="800" letter-spacing="1.6">CONCENTRADO</text>
+      <g fill="#5FD39A" opacity=".8">
+        <rect x="684" y="80" width="64" height="46" rx="5"/><rect x="762" y="86" width="64" height="40" rx="5"/>
+        <rect x="840" y="82" width="64" height="44" rx="5"/><rect x="918" y="90" width="64" height="36" rx="5"/>
+        <rect x="996" y="86" width="64" height="40" rx="5"/><rect x="1074" y="94" width="64" height="32" rx="5"/>
+      </g>
+      <text x="684" y="158" fill="rgba(247,247,242,.78)" font-size="13">Cada pieza recibe presupuesto suficiente para rendir.</text>
+      <text x="684" y="180" fill="rgba(247,247,242,.78)" font-size="13">Se puede saber cuál produce venta y cuál solo consume.</text>
+      <text x="684" y="202" fill="rgba(247,247,242,.78)" font-size="13">Lo que no funciona se corta y financia lo que sí.</text>
+    </svg>
+    </div>
+
+    <div class="result" data-anim style="--d:3">
+      <span class="lb">La idea</span>
+      <p>Ordenar las campañas <strong>no requiere autorizar un dólar adicional de pauta</strong>. Es el mismo presupuesto de Meta y Google trabajando concentrado en lugar de repartido — y por primera vez, medible hasta la venta facturada.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7 · VENTA ============ -->
+<section class="slide">
+  <div class="inner">
+    <div class="eyebrow" data-anim style="--d:0">Lo que se gana · Venta</div>
+    <h2 data-anim style="--d:1">Hoy se mide el primer paso.<br>El dinero está en los <span class="hl">tres siguientes</span>.</h2>
+
+    <div class="solo-compacto" data-anim style="--d:2">
+      <div class="paso p1"><b>Contacto</b><span>esto ya se mide</span></div>
+      <div class="paso p2"><b>Conversación</b><span>¿cuánto cuesta una real?</span></div>
+      <div class="paso p3"><b>Cotización</b><span>la señal que sí importa</span></div>
+      <div class="paso p4"><b>Venta</b><span>y con qué margen</span></div>
+      <p class="cierre">Pagar por conversaciones y pagar por ventas son dos negocios distintos. Solo uno de los dos se puede escalar con confianza.</p>
+    </div>
+    <div class="figwrap solo-ancho" data-anim style="--d:2;margin-top:clamp(12px,2vh,26px)">
+    <svg class="figure" viewBox="0 0 1240 260" role="img" aria-label="Embudo de contacto a venta">
+      <g>
+        <path d="M20 40 L 320 40 L 290 140 L 50 140 Z" fill="#D98E73" opacity=".85"/>
+        <text x="170" y="88" text-anchor="middle" fill="#141C38" font-size="17" font-weight="900">Contacto</text>
+        <text x="170" y="112" text-anchor="middle" fill="#141C38" font-size="12" font-weight="700" opacity=".8">esto ya se mide</text>
+
+        <path d="M344 40 L 644 40 L 620 140 L 368 140 Z" fill="#D98E73" opacity=".32"/>
+        <text x="494" y="88" text-anchor="middle" fill="#F7F7F2" font-size="17" font-weight="900">Conversación</text>
+        <text x="494" y="112" text-anchor="middle" fill="rgba(247,247,242,.6)" font-size="12">¿cuánto cuesta una real?</text>
+
+        <path d="M668 40 L 940 40 L 920 140 L 688 140 Z" fill="#D98E73" opacity=".20"/>
+        <text x="804" y="88" text-anchor="middle" fill="#F7F7F2" font-size="17" font-weight="900">Cotización</text>
+        <text x="804" y="112" text-anchor="middle" fill="rgba(247,247,242,.6)" font-size="12">la señal que sí importa</text>
+
+        <path d="M964 40 L 1220 40 L 1204 140 L 980 140 Z" fill="#5FD39A" opacity=".26"/>
+        <text x="1092" y="88" text-anchor="middle" fill="#F7F7F2" font-size="17" font-weight="900">Venta</text>
+        <text x="1092" y="112" text-anchor="middle" fill="#5FD39A" font-size="12" font-weight="700">y con qué margen</text>
+      </g>
+      <path d="M20 172 L 320 172" stroke="#D98E73" stroke-width="2"/>
+      <text x="20" y="196" fill="#D98E73" font-size="12.5" font-weight="800">LO QUE HOY SE VE</text>
+      <path d="M344 172 L 1220 172" stroke="rgba(247,247,242,.22)" stroke-width="2" stroke-dasharray="6 6"/>
+      <text x="344" y="196" fill="rgba(247,247,242,.55)" font-size="12.5" font-weight="800">LO QUE DECIDE SI EL NEGOCIO GANA O PIERDE</text>
+      <text x="20" y="238" fill="rgba(247,247,242,.72)" font-size="14">Pagar por conversaciones y pagar por ventas son dos negocios distintos. Solo uno de los dos se puede escalar con confianza.</text>
+    </svg>
+    </div>
+
+    <div class="grid g3" style="margin-top:clamp(10px,1.6vh,20px)">
+      <div class="card" data-anim style="--d:3"><div class="k">Atención medida</div><p>Tiempo de respuesta, seguimiento y cierre por asesor. Un cliente que espera horas ya compró en otro lado.</p></div>
+      <div class="card" data-anim style="--d:4"><div class="k">Atribución real</div><p>Qué campaña trajo al cliente que efectivamente compró — no cuántos escribieron.</p></div>
+      <div class="card" data-anim style="--d:5"><div class="k">Canal digital medido</div><p>Al integrarlo, se ve qué aporta y qué cuesta cada pedido. Capacidad de venta que ya existe y hoy no se mide.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8 · YA ESTÁ CONSTRUIDO ============ -->
+<section class="slide">
+  <div class="inner">
+    <div class="eyebrow" data-anim style="--d:0">La prueba</div>
+    <h2 data-anim style="--d:1">Esto no es un plan.<br>Está construido y <span class="hl">funcionando hoy</span>.</h2>
+
+    <div class="grid g23" style="margin-top:clamp(10px,1.8vh,22px);align-items:center">
+      <div data-anim style="--d:2">
+      <svg class="figure" viewBox="0 0 620 300" role="img" aria-label="Representación de un dashboard en operación">
+        <rect x="10" y="10" width="600" height="280" rx="18" fill="rgba(247,247,242,.045)" stroke="rgba(217,142,115,.35)"/>
+        <rect x="34" y="34" width="130" height="10" rx="5" fill="#D98E73" opacity=".8"/>
+        <rect x="34" y="56" width="86" height="8" rx="4" fill="#F7F7F2" opacity=".25"/>
+        <g>
+          <rect x="34" y="84" width="128" height="66" rx="10" fill="rgba(217,142,115,.14)" stroke="rgba(217,142,115,.3)"/>
+          <rect x="48" y="100" width="58" height="16" rx="4" fill="#F7F7F2" opacity=".8"/>
+          <rect x="48" y="124" width="86" height="7" rx="3" fill="#F7F7F2" opacity=".28"/>
+          <rect x="176" y="84" width="128" height="66" rx="10" fill="rgba(95,211,154,.13)" stroke="rgba(95,211,154,.3)"/>
+          <rect x="190" y="100" width="48" height="16" rx="4" fill="#5FD39A" opacity=".9"/>
+          <rect x="190" y="124" width="86" height="7" rx="3" fill="#F7F7F2" opacity=".28"/>
+          <rect x="318" y="84" width="128" height="66" rx="10" fill="rgba(247,247,242,.05)" stroke="rgba(247,247,242,.14)"/>
+          <rect x="332" y="100" width="54" height="16" rx="4" fill="#F7F7F2" opacity=".7"/>
+          <rect x="332" y="124" width="86" height="7" rx="3" fill="#F7F7F2" opacity=".28"/>
+          <rect x="460" y="84" width="126" height="66" rx="10" fill="rgba(247,247,242,.05)" stroke="rgba(247,247,242,.14)"/>
+          <rect x="474" y="100" width="42" height="16" rx="4" fill="#F7F7F2" opacity=".7"/>
+          <rect x="474" y="124" width="86" height="7" rx="3" fill="#F7F7F2" opacity=".28"/>
+        </g>
+        <rect x="34" y="168" width="552" height="98" rx="12" fill="rgba(247,247,242,.035)" stroke="rgba(247,247,242,.10)"/>
+        <polyline points="56,244 116,224 176,232 236,200 296,210 356,178 416,190 476,160 536,150 566,142"
+                  fill="none" stroke="#D98E73" stroke-width="2.4"/>
+        <g fill="#D98E73"><circle cx="536" cy="150" r="4"/><circle cx="566" cy="142" r="4"/></g>
+        <polyline points="56,254 116,250 176,246 236,244 296,238 356,236 416,230 476,226 536,220 566,216"
+                  fill="none" stroke="#5FD39A" stroke-width="2" opacity=".65"/>
+      </svg>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:clamp(7px,.85vw,12px)">
+        <div class="grid g2">
+          <div class="card metric" data-anim style="--d:3"><span class="n">11</span><span class="l">dashboards en producción, con actualización automática</span></div>
+          <div class="card metric" data-anim style="--d:4"><span class="n copper">5</span><span class="l">sistemas distintos conectados entre sí</span></div>
+        </div>
+        <div class="grid g2">
+          <div class="card metric" data-anim style="--d:5"><span class="n">24.500</span><span class="l">movimientos de inventario procesados y cuadrados</span></div>
+          <div class="card metric" data-anim style="--d:6"><span class="n copper">8.000+</span><span class="l">conversaciones de venta auditadas en un solo mes</span></div>
+        </div>
+        <div class="grid g2">
+          <div class="card metric" data-anim style="--d:7"><span class="n">537<span style="font-size:.5em;opacity:.5">/537</span></span><span class="l">unidades cuadradas, sin una sola diferencia</span></div>
+          <div class="card metric" data-anim style="--d:8"><span class="n copper">0</span><span class="l">desarrolladores contratados y licencias compradas</span></div>
+        </div>
+        <div class="card" data-anim style="--d:9;border-color:rgba(95,211,154,.32);padding:clamp(11px,1.05vw,16px)">
+          <p style="color:var(--bone)">Opera hoy en una empresa ecuatoriana de retail con varios puntos de venta. <strong>En una reunión se los abro y navegamos juntos, con los datos de ese mismo día.</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 9 · COMPROMISO Y PLAN ============ -->
+<section class="slide">
+  <div class="inner">
+    <div class="eyebrow" data-anim style="--d:0">Cómo se ejecuta y cómo se mide</div>
+    <h2 data-anim style="--d:1">Noventa días.<br>Y el resultado a la vista desde el primero.</h2>
+
+    <div class="solo-compacto" data-anim style="--d:2">
+      <div class="etapa"><div class="num">1</div><div><b>Ver</b><span>Conexión de las fuentes y primer dashboard en vivo</span></div></div>
+      <div class="etapa"><div class="num">2</div><div><b>Ordenar</b><span>Reestructura de la inversión y medición hasta la venta</span></div></div>
+      <div class="etapa fin"><div class="num">3</div><div><b>Automatizar</b><span>Alertas, reposición automática y equipo capacitado</span></div></div>
+      <p class="nota" style="font-size:2.9vw;color:var(--faint)">El primer dashboard entra en producción en las primeras semanas, no al final del proyecto.</p>
+    </div>
+    <div class="figwrap solo-ancho" data-anim style="--d:2;margin-top:clamp(12px,2vh,26px)">
+    <svg class="figure" viewBox="0 0 1240 190" role="img" aria-label="Plan de noventa días en tres etapas">
+      <line x1="70" y1="52" x2="1170" y2="52" stroke="rgba(217,142,115,.3)" stroke-width="2"/>
+      <g>
+        <circle cx="180" cy="52" r="13" fill="#D98E73"/>
+        <text x="180" y="57" text-anchor="middle" fill="#141C38" font-size="13" font-weight="900">1</text>
+        <text x="180" y="94" text-anchor="middle" fill="#F7F7F2" font-size="17" font-weight="800">Ver</text>
+        <text x="180" y="120" text-anchor="middle" fill="rgba(247,247,242,.6)" font-size="12.5">Conexión de las fuentes</text>
+        <text x="180" y="140" text-anchor="middle" fill="rgba(247,247,242,.6)" font-size="12.5">y primer dashboard en vivo</text>
+
+        <circle cx="620" cy="52" r="13" fill="#D98E73"/>
+        <text x="620" y="57" text-anchor="middle" fill="#141C38" font-size="13" font-weight="900">2</text>
+        <text x="620" y="94" text-anchor="middle" fill="#F7F7F2" font-size="17" font-weight="800">Ordenar</text>
+        <text x="620" y="120" text-anchor="middle" fill="rgba(247,247,242,.6)" font-size="12.5">Reestructura de la inversión</text>
+        <text x="620" y="140" text-anchor="middle" fill="rgba(247,247,242,.6)" font-size="12.5">y medición hasta la venta</text>
+
+        <circle cx="1060" cy="52" r="13" fill="#5FD39A"/>
+        <text x="1060" y="57" text-anchor="middle" fill="#141C38" font-size="13" font-weight="900">3</text>
+        <text x="1060" y="94" text-anchor="middle" fill="#5FD39A" font-size="17" font-weight="800">Automatizar</text>
+        <text x="1060" y="120" text-anchor="middle" fill="rgba(247,247,242,.6)" font-size="12.5">Alertas, reposición automática</text>
+        <text x="1060" y="140" text-anchor="middle" fill="rgba(247,247,242,.6)" font-size="12.5">y equipo capacitado</text>
+      </g>
+      <text x="70" y="180" fill="rgba(247,247,242,.45)" font-size="12" font-style="italic">El primer dashboard entra en producción en las primeras semanas, no al final del proyecto.</text>
+    </svg>
+    </div>
+
+    <div class="grid g3" style="margin-top:clamp(10px,1.6vh,20px)">
+      <div class="card" data-anim style="--d:3">
+        <div class="k">Metas antes de empezar</div>
+        <p>Se define por escrito qué indicadores deben moverse y en qué plazo. Quedan visibles en el dashboard desde el primer día.</p>
+      </div>
+      <div class="card" data-anim style="--d:4">
+        <div class="k">Todo queda en la empresa</div>
+        <p>Accesos, dashboards, documentación y automatizaciones quedan a nombre de la empresa. Si se decide parar, todo sigue funcionando.</p>
+      </div>
+      <div class="card" data-anim style="--d:5;border-color:rgba(95,211,154,.32)">
+        <div class="k" style="color:var(--green)">Verificable, no prometido</div>
+        <p>Los números salen de sus propios sistemas y ustedes los ven al mismo tiempo que yo, en la misma pantalla.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10 · CIERRE ============ -->
+<section class="slide cover">
+  <div class="inner">
+    <div class="eyebrow" data-anim style="--d:0">Siguiente paso</div>
+    <h1 data-anim style="--d:1;font-size:clamp(30px,4.9vw,64px);max-width:20ch">
+      Treinta minutos y le muestro<br>los dashboards <span class="hl">funcionando</span>.
+    </h1>
+    <p class="lead" data-anim style="--d:2;margin-top:20px;max-width:66ch">
+      En vivo, con datos del día, sobre sistemas como los que ya opera su empresa. Es la forma más
+      rápida de ver el tamaño de la oportunidad antes de comprometer un solo dólar.
+    </p>
+
+    <div class="grid g3" style="margin-top:clamp(22px,3.4vh,42px);max-width:920px">
+      <div class="card neutral" data-anim style="--d:3"><div class="k">Correo</div><p style="color:var(--bone)">gamoralesdesign@gmail.com</p></div>
+      <div class="card neutral" data-anim style="--d:4"><div class="k">Teléfono</div><p style="color:var(--bone)">+593 98 320 7958</p></div>
+      <div class="card neutral" data-anim style="--d:5"><div class="k">LinkedIn</div><p style="color:var(--bone)">in/garymoraleslitardo</p></div>
+    </div>
+
+    <div class="sig" data-anim style="--d:6">
+      <div>
+        <div class="sig-name">Gary Morales</div>
+        <div class="sig-role">Growth &amp; Automatización con IA — Guayaquil, Ecuador</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /deck -->
+
+<div class="hud">
+  <div class="brand">LA EMPRESA QUE SE <b>MIDE SOLA</b></div>
+  <div class="nav">
+    <button id="btnOv" title="Índice (O)">☰</button>
+    <button id="btnPrev" title="Anterior (←)">‹</button>
+    <span class="counter"><b id="cur">1</b> / <span id="tot">10</span></span>
+    <button id="btnNext" title="Siguiente (→)">›</button>
+    <button id="btnFs" title="Pantalla completa (F)">⛶</button>
+  </div>
+</div>
+
+<div class="hint" id="hint">Use <kbd>←</kbd> <kbd>→</kbd> para navegar</div>
+<div class="scrollhint" id="scrollhint">↓ desliza para ver más</div>
+
+<div class="overview" id="overview">
+  <div class="ov-head">
+    <h3>Índice</h3>
+    <span>Clic para saltar · ESC para cerrar</span>
+  </div>
+  <div class="ov-grid" id="ovGrid"></div>
+</div>
+
+<script>
+(function(){
+  var mv = document.querySelector('meta[name="viewport"]');
+  if (!mv) { mv = document.createElement('meta'); mv.setAttribute('name','viewport'); document.head.appendChild(mv); }
+  mv.setAttribute('content','width=device-width, initial-scale=1, viewport-fit=cover');
+
+  // ¿hay que leer esto como en un telefono?
+  // Dos casos: (a) el lienzo es angosto de verdad; (b) el visor dibuja la pagina
+  // ancha y la reduce para que quepa — ahi el ancho CSS enga~na y hay que mirar
+  // la pantalla fisica del aparato.
+  function esCompacto(){
+    var w = window.innerWidth || 1024;
+    var pantalla = (window.screen && window.screen.width) ? window.screen.width : w;
+    var tactil = false;
+    try { tactil = window.matchMedia('(pointer: coarse)').matches; } catch (e) {}
+    if (w <= 860) return true;                       // caso (a)
+    if (pantalla <= 900 && w > pantalla * 1.15) return true;  // caso (b): dibujado ancho y reducido
+    if (tactil && pantalla <= 900) return true;      // respaldo: aparato tactil de pantalla chica
+    return false;
+  }
+  function aplicar(){
+    try { document.documentElement.classList.toggle('compacto', esCompacto()); } catch (e) {}
+  }
+  aplicar();
+  window.addEventListener('resize', function(){ setTimeout(aplicar, 150); });
+  window.addEventListener('orientationchange', function(){ setTimeout(aplicar, 300); });
+})();
+
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var i = 0, n = slides.length;
+  var titles = [
+    'Portada','Cinco áreas aisladas','Un solo sistema','Qué se automatiza',
+    'Lo que se recupera · Tiempo','Lo que se recupera · Dinero','Lo que se gana · Venta',
+    'La prueba','Plan y compromiso','Cierre y contacto'
+  ];
+
+  var progress = document.getElementById('progress');
+  var cur = document.getElementById('cur');
+  var tot = document.getElementById('tot');
+  var hint = document.getElementById('hint');
+  var overview = document.getElementById('overview');
+  var ovGrid = document.getElementById('ovGrid');
+  var scrollhint = document.getElementById('scrollhint');
+
+  tot.textContent = n;
+
+  for (var k = 0; k < n; k++) {
+    (function(idx){
+      var el = document.createElement('div');
+      el.className = 'ov-item';
+      el.innerHTML = '<span class="i">' + String(idx+1).padStart(2,'0') + '</span>' +
+                     '<span class="t">' + (titles[idx] || ('Diapositiva ' + (idx+1))) + '</span>';
+      el.addEventListener('click', function(){ go(idx); closeOv(); });
+      ovGrid.appendChild(el);
+    })(k);
+  }
+
+  function revisarDesborde(){
+    var s = slides[i];
+    if (!s || !scrollhint) return;
+    var sobra = s.scrollHeight > s.clientHeight + 8;
+    scrollhint.classList.toggle('show', sobra && s.scrollTop < 16);
+  }
+  slides.forEach(function(s){ s.addEventListener('scroll', revisarDesborde, {passive:true}); });
+  window.addEventListener('resize', function(){ setTimeout(revisarDesborde, 120); });
+
+  function render(){
+    slides.forEach(function(s, idx){ s.classList.toggle('is-active', idx === i); });
+    slides[i].scrollTop = 0;
+    setTimeout(revisarDesborde, 60);
+    progress.style.width = ((i) / (n - 1) * 100) + '%';
+    cur.textContent = i + 1;
+    if (i > 0 && hint) { hint.style.opacity = '0'; }
+    try { if (location.hash !== '#' + (i+1)) history.replaceState(null, '', '#' + (i+1)); } catch (err) {}
+  }
+  function go(x){ i = Math.max(0, Math.min(n - 1, x)); render(); }
+  function next(){ if (i < n - 1) go(i + 1); }
+  function prev(){ if (i > 0) go(i - 1); }
+
+  function openOv(){ overview.classList.add('open'); }
+  function closeOv(){ overview.classList.remove('open'); }
+  function toggleOv(){ overview.classList.contains('open') ? closeOv() : openOv(); }
+
+  function toggleFs(){
+    try {
+      if (!document.fullscreenElement) {
+        var p = document.documentElement.requestFullscreen && document.documentElement.requestFullscreen();
+        if (p && p.catch) p.catch(function(){});
+      } else if (document.exitFullscreen) { document.exitFullscreen(); }
+    } catch (err) {}
+  }
+
+  document.addEventListener('keydown', function(e){
+    var k = e.key;
+    if (k === 'Escape') { closeOv(); return; }
+    if (overview.classList.contains('open') && k !== 'o' && k !== 'O') return;
+    if (k === 'ArrowRight' || k === 'PageDown' || k === ' ' || k === 'Enter') { e.preventDefault(); next(); }
+    else if (k === 'ArrowLeft' || k === 'PageUp' || k === 'Backspace') { e.preventDefault(); prev(); }
+    else if (k === 'Home') { go(0); }
+    else if (k === 'End') { go(n - 1); }
+    else if (k === 'o' || k === 'O') { toggleOv(); }
+    else if (k === 'f' || k === 'F') { toggleFs(); }
+  });
+
+  document.getElementById('btnNext').addEventListener('click', next);
+  document.getElementById('btnPrev').addEventListener('click', prev);
+  document.getElementById('btnOv').addEventListener('click', toggleOv);
+  document.getElementById('btnFs').addEventListener('click', toggleFs);
+  overview.addEventListener('click', function(e){ if (e.target === overview) closeOv(); });
+
+  var x0 = null, y0 = null;
+  document.addEventListener('touchstart', function(e){
+    x0 = e.changedTouches[0].clientX; y0 = e.changedTouches[0].clientY;
+  }, {passive:true});
+  document.addEventListener('touchend', function(e){
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0;
+    var dy = e.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) { dx < 0 ? next() : prev(); }
+    x0 = null; y0 = null;
+  }, {passive:true});
+
+  var lock = false;
+  document.addEventListener('wheel', function(e){
+    if (overview.classList.contains('open')) return;
+    if (lock || Math.abs(e.deltaY) < 24) return;
+    var s = slides[i];
+    if (s.scrollHeight > s.clientHeight + 8) {
+      var arriba = s.scrollTop < 4, abajo = s.scrollTop + s.clientHeight >= s.scrollHeight - 4;
+      if (!(e.deltaY > 0 && abajo) && !(e.deltaY < 0 && arriba)) return;
+    }
+    lock = true; setTimeout(function(){ lock = false; }, 700);
+    e.deltaY > 0 ? next() : prev();
+  }, {passive:true});
+
+  var h = NaN;
+  try { h = parseInt((location.hash || '').replace('#',''), 10); } catch (err) {}
+  if (h >= 1 && h <= n) i = h - 1;
+  render();
+})();
+</script>
+</body>
+</html>
