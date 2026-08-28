@@ -1191,8 +1191,19 @@ kbd{
     try { document.documentElement.classList.toggle('compacto', esCompacto()); } catch (e) {}
   }
   aplicar();
-  window.addEventListener('resize', function(){ setTimeout(aplicar, 150); });
+  // el evento resize no siempre llega (emuladores, visores embebidos, cambio de
+  // orientacion): se vigila el tamano real del documento ademas del evento.
+  window.addEventListener('resize', function(){ setTimeout(aplicar, 120); });
   window.addEventListener('orientationchange', function(){ setTimeout(aplicar, 300); });
+  try {
+    if (window.ResizeObserver) new ResizeObserver(aplicar).observe(document.documentElement);
+  } catch (e) {}
+  try {
+    var mq = window.matchMedia('(max-width: 860px)');
+    if (mq.addEventListener) mq.addEventListener('change', aplicar);
+    else if (mq.addListener) mq.addListener(aplicar);
+  } catch (e) {}
+  [200, 600, 1500].forEach(function(t){ setTimeout(aplicar, t); });
 })();
 
 (function(){
