@@ -297,17 +297,18 @@ kbd{
 
 /* ============ IMPRESIÓN / PDF ============ */
 @media print{
-  @page{size:1280px 720px;margin:0}
+  @page{size:13.333in 7.5in;margin:0}
   body,html{overflow:visible;height:auto;background:#0E1530}
   .deck{height:auto;overflow:visible}
   .slide{
-    position:relative;inset:auto;width:1280px;height:720px;max-width:none;
-    opacity:1!important;visibility:visible!important;page-break-after:always;break-after:page;
+    position:relative;inset:auto;width:13.333in;height:7.5in;max-width:none;
+    opacity:1!important;visibility:visible!important;page-break-after:always;
     overflow:visible;
     -webkit-print-color-adjust:exact;print-color-adjust:exact;
   }
-  .slide .inner{margin:auto}
   [data-anim]{opacity:1!important;transform:none!important}
+  .slide:last-of-type{page-break-after:auto}
+  .deck{display:block}
   /* al imprimir manda la retícula de escritorio, no la de pantalla angosta */
   .g2{grid-template-columns:repeat(2,1fr)}
   .g3{grid-template-columns:repeat(3,1fr)}
@@ -318,7 +319,10 @@ kbd{
   .ba{grid-template-columns:1fr auto 1fr}
   .ba .arrow{transform:none}
   .figwrap{overflow:visible}
+  .mosaico{grid-template-columns:repeat(3,1fr)}
+  .mosaico img{box-shadow:none}
   .hud,.progress,.overview,.hint,.fadebottom,.scrollhint{display:none!important}
+  .slide .inner{margin:auto}
 }
 
 /* franja de resultado de negocio */
@@ -1064,59 +1068,7 @@ kbd{
   </div>
 </section>
 
-<!-- ============ 10 · CÓMO SE CONTRATA ============ -->
-<section class="slide">
-  <div class="inner">
-    <div class="eyebrow" data-anim style="--d:0">Cómo se contrata</div>
-    <h2 data-anim style="--d:1">Dos pagos. Y el segundo empieza<br>cuando ya hay algo <span class="hl">funcionando</span>.</h2>
-
-    <div class="grid g3" style="margin-top:clamp(16px,2.6vh,32px)">
-      <div class="card" data-anim style="--d:2">
-        <div class="k">1 · Implementación</div>
-        <h3>El proyecto de 90 días</h3>
-        <p style="margin-top:8px">Construir el sistema: conexiones, dashboards, reestructura de campañas y automatizaciones. Tiene principio y fin.</p>
-        <p style="margin-top:10px;color:var(--faint)">Se cotiza al cerrar el diagnóstico, según el alcance real. Se paga por fases, no todo por adelantado.</p>
-      </div>
-
-      <div class="card" data-anim style="--d:3;border-color:rgba(217,142,115,.45);background:rgba(217,142,115,.09)">
-        <div class="k">2 · Mantenimiento mensual</div>
-        <h3>Que el sistema siga vivo</h3>
-        <div class="deliver" style="margin-top:10px">
-          <span>Hasta 3 dashboards — <strong>desde $850</strong></span>
-          <span>De 4 a 6 dashboards — <strong>desde $1.450</strong></span>
-          <span>De 7 a 10 dashboards — <strong>desde $2.200</strong></span>
-        </div>
-        <p style="margin-top:12px;color:var(--copper-soft)"><strong>Empieza cuando el primer dashboard entra en producción</strong>, no al firmar el proyecto.</p>
-      </div>
-
-      <div class="card" data-anim style="--d:4">
-        <div class="k">Qué incluye el mensual</div>
-        <div class="deliver" style="margin-top:10px">
-          <span>Servidor, publicación y accesos con clave</span>
-          <span>Monitoreo diario de que todo esté corriendo</span>
-          <span>Corrección cuando una plataforma cambia — y cambian varias veces al año</span>
-          <span>Mejoras y ajustes sobre lo ya construido</span>
-          <span>Reunión mensual de revisión de resultados</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="grid g2" style="margin-top:clamp(12px,2vh,24px)">
-      <div class="card neutral" data-anim style="--d:5">
-        <div class="k">Para conectar</div>
-        <p>Solo se necesitan <strong>accesos de lectura</strong> a los sistemas que la empresa ya usa. No se instala nada nuevo ni se cambia de proveedor.</p>
-      </div>
-      <div class="card" data-anim style="--d:6;border-color:rgba(95,211,154,.32)">
-        <div class="k" style="color:var(--green)">Cómo se compara</div>
-        <p>El plan completo cuesta <strong>menos que contratar a un analista de datos</strong> — y ese analista solo haría una parte del trabajo.</p>
-      </div>
-    </div>
-
-    <p class="small" data-anim style="--d:7;margin-top:clamp(8px,1.4vh,16px)">Valores referenciales en dólares, más IVA. El alcance definitivo se acuerda por escrito antes de empezar.</p>
-  </div>
-</section>
-
-<!-- ============ 11 · CIERRE ============ -->
+<!-- ============ 10 · CIERRE ============ -->
 <section class="slide cover">
   <div class="inner">
     <div class="eyebrow" data-anim style="--d:0">Siguiente paso</div>
@@ -1150,7 +1102,7 @@ kbd{
   <div class="nav">
     <button id="btnOv" title="Índice (O)">☰</button>
     <button id="btnPrev" title="Anterior (←)">‹</button>
-    <span class="counter"><b id="cur">1</b> / <span id="tot">11</span></span>
+    <span class="counter"><b id="cur">1</b> / <span id="tot">10</span></span>
     <button id="btnNext" title="Siguiente (→)">›</button>
     <button id="btnFs" title="Pantalla completa (F)">⛶</button>
   </div>
@@ -1204,6 +1156,11 @@ kbd{
     else if (mq.addListener) mq.addListener(aplicar);
   } catch (e) {}
   [200, 600, 1500].forEach(function(t){ setTimeout(aplicar, t); });
+  // al generar PDF la ventana puede ser angosta: el modo compacto no debe aplicar
+  window.addEventListener('beforeprint', function(){
+    try { document.documentElement.classList.remove('compacto'); } catch (e) {}
+  });
+  window.addEventListener('afterprint', aplicar);
 })();
 
 (function(){
@@ -1212,7 +1169,7 @@ kbd{
   var titles = [
     'Portada','Cinco áreas aisladas','Un solo sistema','Qué se automatiza',
     'Lo que se recupera · Tiempo','Lo que se recupera · Dinero','Lo que se gana · Venta',
-    'La prueba','Plan y compromiso','Cómo se contrata','Cierre y contacto'
+    'La prueba','Plan y compromiso','Cierre y contacto'
   ];
 
   var progress = document.getElementById('progress');
