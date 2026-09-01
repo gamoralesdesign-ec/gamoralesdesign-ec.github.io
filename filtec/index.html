@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Propuesta para Filtec — Gary Morales</title>
+<meta name="description" content="WhatsApp con IA, CRM conectado, publicidad medida hasta la venta y dos tableros que se actualizan solos.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Gary Morales">
+<meta property="og:locale" content="es_EC">
+<meta property="og:title" content="El sistema comercial de Filtec, funcionando solo">
+<meta property="og:description" content="WhatsApp con IA, CRM conectado, publicidad que se mide hasta la venta y dos tableros que se actualizan solos.">
+<meta name="theme-color" content="#141C38">
+<meta name="author" content="Gary Morales">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23141C38'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%23D98E73' stroke-width='2.6'/%3E%3Ccircle cx='16' cy='16' r='2.4' fill='%23D98E73'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy-deep:#0E1530; --navy:#141C38; --navy-mid:#1A2547; --navy-light:#22315E;
+  --copper:#D98E73; --copper-soft:#E9B49F; --copper-dark:#B96F52;
+  --bone:#F7F7F2; --muted:rgba(247,247,242,.68); --faint:rgba(247,247,242,.44);
+  --card:rgba(217,142,115,.07); --card-2:rgba(247,247,242,.045);
+  --line:rgba(217,142,115,.22); --line-soft:rgba(247,247,242,.11);
+  --green:#5FD39A; --amber:#F2C15B; --red:#F07A6A;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  background:var(--navy);color:var(--bone);-webkit-font-smoothing:antialiased;
+  line-height:1.62;overflow-x:hidden;
+}
+.wrap{max-width:940px;margin:0 auto;padding:0 clamp(20px,5vw,40px)}
+
+/* progreso */
+.topbar{position:sticky;top:0;z-index:60;background:rgba(14,21,48,.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--line-soft)}
+.topbar .wrap{display:flex;align-items:center;gap:16px;padding-top:11px;padding-bottom:11px}
+.brandmark{display:flex;align-items:center;gap:9px;font-weight:800;font-size:13px;letter-spacing:.02em;white-space:nowrap}
+.dot{width:16px;height:16px;border-radius:50%;border:2.4px solid var(--copper);position:relative;flex:none}
+.dot::after{content:"";position:absolute;inset:3.4px;border-radius:50%;background:var(--copper)}
+.bar{flex:1;height:7px;border-radius:99px;background:rgba(247,247,242,.11);overflow:hidden;min-width:60px}
+.bar i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--copper-dark),var(--copper-soft));transition:width .5s var(--ease)}
+.pct{font-size:12px;font-weight:700;color:var(--copper-soft);white-space:nowrap;font-variant-numeric:tabular-nums}
+
+/* portada */
+.hero{padding:clamp(52px,9vh,104px) 0 clamp(38px,6vh,64px);position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;width:min(560px,110%);height:560px;right:-160px;top:-220px;border-radius:50%;
+  background:radial-gradient(circle at 60% 40%,rgba(217,142,115,.20),transparent 66%);filter:blur(14px);pointer-events:none}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--copper-soft);border:1px solid var(--line);border-radius:99px;padding:7px 15px;margin-bottom:24px}
+h1{font-size:clamp(31px,5.6vw,54px);line-height:1.08;font-weight:900;letter-spacing:-.025em;margin-bottom:20px}
+h1 em{font-style:normal;color:var(--copper)}
+.lead{font-size:clamp(16px,2.1vw,19.5px);color:var(--muted);max-width:660px;margin-bottom:34px}
+.meta-row{display:flex;flex-wrap:wrap;gap:11px}
+.chip{background:var(--card-2);border:1px solid var(--line-soft);border-radius:10px;padding:11px 16px;font-size:13px}
+.chip b{display:block;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);font-weight:700;margin-bottom:3px}
+
+/* secciones */
+section{padding:clamp(38px,6vh,66px) 0;border-top:1px solid var(--line-soft)}
+.sec-n{font-size:11.5px;font-weight:800;letter-spacing:.16em;color:var(--copper);text-transform:uppercase;margin-bottom:11px}
+h2{font-size:clamp(23px,3.4vw,34px);line-height:1.16;font-weight:850;letter-spacing:-.02em;margin-bottom:14px}
+h3{font-size:clamp(17px,2.2vw,21px);font-weight:800;letter-spacing:-.01em;margin-bottom:9px}
+.sub{color:var(--muted);max-width:680px;margin-bottom:28px;font-size:15.5px}
+p{margin-bottom:13px}
+p:last-child{margin-bottom:0}
+
+/* tarjetas */
+.grid{display:grid;gap:15px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(268px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(215px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:22px}
+.card.plain{background:var(--card-2);border-color:var(--line-soft)}
+.card h4{font-size:15.5px;font-weight:800;margin-bottom:7px;letter-spacing:-.01em}
+.card p{font-size:14px;color:var(--muted);margin:0}
+.icon{display:flex;align-items:center;gap:8px;margin-bottom:12px;font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+.icon::before{content:"";width:9px;height:9px;border-radius:50%;flex:none;background:var(--copper);box-shadow:0 0 0 3px rgba(217,142,115,.16)}
+.icon.ok::before{background:var(--green);box-shadow:0 0 0 3px rgba(95,211,154,.16)}
+.icon.warn::before{background:var(--amber);box-shadow:0 0 0 3px rgba(242,193,91,.16)}
+.icon.bad::before{background:var(--red);box-shadow:0 0 0 3px rgba(240,122,106,.16)}
+
+/* listas de resultado */
+.res{list-style:none;display:grid;gap:12px}
+.res li{display:flex;gap:13px;align-items:flex-start;font-size:15.5px}
+.res li::before{content:"";flex:none;width:21px;height:21px;margin-top:2px;border-radius:50%;
+  background:rgba(95,211,154,.14);border:1.5px solid rgba(95,211,154,.5);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235FD39A' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+  background-size:12px;background-position:center;background-repeat:no-repeat}
+.res li b{color:var(--bone)}
+.res li span{color:var(--muted)}
+
+/* fases */
+.fase{background:linear-gradient(180deg,rgba(217,142,115,.075),rgba(217,142,115,.02));border:1px solid var(--line);border-radius:18px;padding:clamp(20px,3vw,30px);margin-bottom:20px}
+.fase-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:6px}
+.fase-tag{font-size:11px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--copper);margin-bottom:6px}
+.fase-price{text-align:right;white-space:nowrap}
+.fase-price s{color:var(--faint);font-size:14px;margin-right:8px;text-decoration-thickness:1.5px}
+.fase-price b{font-size:25px;font-weight:900;letter-spacing:-.02em;color:var(--copper-soft)}
+.fase-note{color:var(--muted);font-size:14.5px;margin-bottom:19px}
+.fase-when{font-size:12px;color:var(--faint);font-weight:600}
+
+/* checklist */
+.check{list-style:none;display:grid;gap:2px}
+.check li{border-radius:10px;transition:background .2s}
+.check li:hover{background:rgba(247,247,242,.035)}
+.check label{display:flex;gap:12px;align-items:flex-start;cursor:pointer;padding:9px 11px;font-size:14.6px}
+.check input{appearance:none;-webkit-appearance:none;flex:none;width:19px;height:19px;margin-top:2px;border-radius:6px;
+  border:1.8px solid rgba(247,247,242,.3);background:rgba(247,247,242,.05);cursor:pointer;transition:all .18s var(--ease);position:relative}
+.check input:hover{border-color:var(--copper)}
+.check input:checked{background:var(--copper);border-color:var(--copper)}
+.check input:checked::after{content:"";position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23141C38' stroke-width='3.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+  background-size:13px;background-position:center;background-repeat:no-repeat}
+.check input:checked + span{color:var(--faint);text-decoration:line-through;text-decoration-color:rgba(247,247,242,.3)}
+.check span{transition:color .2s}
+.check li.hd{font-size:11px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--copper-soft);
+  padding:16px 11px 5px;pointer-events:none}
+.check li.hd:first-child{padding-top:4px}
+
+/* tabla */
+.tbl{width:100%;border-collapse:collapse;font-size:14.5px;margin:6px 0 4px}
+.tbl th{text-align:left;font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--faint);font-weight:800;padding:0 12px 11px;border-bottom:1px solid var(--line)}
+.tbl td{padding:13px 12px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+.tbl tr:last-child td{border-bottom:none}
+.tbl .num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums;font-weight:700}
+.tbl .tot td{border-top:1.5px solid var(--line);border-bottom:none;padding-top:16px;font-weight:800;font-size:16.5px}
+.tbl .tot .num{color:var(--copper);font-size:22px;font-weight:900}
+.tbl s{color:var(--faint);font-weight:500}
+.scroller{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+/* precio destacado */
+.pricebox{background:linear-gradient(150deg,rgba(217,142,115,.16),rgba(217,142,115,.04));border:1.5px solid var(--line);border-radius:20px;padding:clamp(24px,4vw,36px);text-align:center;margin-bottom:20px;position:relative;overflow:hidden}
+.badge{display:inline-block;background:var(--copper);color:var(--navy);font-size:11px;font-weight:900;letter-spacing:.11em;text-transform:uppercase;padding:6px 14px;border-radius:99px;margin-bottom:17px}
+.was{color:var(--faint);font-size:16px;margin-bottom:5px}
+.was s{text-decoration-thickness:1.6px}
+.now{font-size:clamp(42px,8vw,60px);font-weight:900;letter-spacing:-.035em;line-height:1;color:var(--copper-soft);margin-bottom:9px}
+.now small{font-size:.42em;font-weight:700;color:var(--muted);letter-spacing:0}
+.saving{display:inline-block;background:rgba(95,211,154,.13);border:1px solid rgba(95,211,154,.34);color:var(--green);
+  font-size:13px;font-weight:700;padding:7px 15px;border-radius:99px}
+
+/* pagos */
+.steps{display:grid;gap:13px;counter-reset:s}
+.step{display:flex;gap:15px;align-items:flex-start;background:var(--card-2);border:1px solid var(--line-soft);border-radius:13px;padding:17px 19px}
+.step::before{counter-increment:s;content:counter(s);flex:none;width:30px;height:30px;border-radius:50%;background:var(--copper);color:var(--navy);
+  font-weight:900;font-size:14px;display:flex;align-items:center;justify-content:center}
+.step h4{font-size:15px;font-weight:800;margin-bottom:4px}
+.step p{font-size:14px;color:var(--muted);margin:0}
+.step .amt{margin-left:auto;font-weight:800;color:var(--copper-soft);white-space:nowrap;font-size:15px;padding-left:10px}
+
+/* avisos */
+.note{background:rgba(242,193,91,.075);border:1px solid rgba(242,193,91,.28);border-left:3px solid var(--amber);border-radius:0 13px 13px 0;padding:19px 22px;font-size:14.5px}
+.note b{color:var(--amber)}
+.note.ok{background:rgba(95,211,154,.07);border-color:rgba(95,211,154,.26);border-left-color:var(--green)}
+.note.ok b{color:var(--green)}
+
+.tags{display:flex;flex-wrap:wrap;gap:9px}
+.tag{background:var(--card-2);border:1px solid var(--line-soft);border-radius:99px;padding:8px 15px;font-size:13.5px;color:var(--muted)}
+
+/* cierre */
+.close{background:linear-gradient(150deg,var(--navy-mid),var(--navy-deep));border:1px solid var(--line);border-radius:20px;padding:clamp(26px,4.5vw,44px);text-align:center}
+.close h2{margin-bottom:12px}
+.close p{color:var(--muted);max-width:520px;margin:0 auto 26px}
+.contact{display:flex;flex-wrap:wrap;gap:11px;justify-content:center}
+.contact a{display:inline-flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:11px;
+  padding:12px 19px;color:var(--bone);text-decoration:none;font-size:14.5px;font-weight:600;transition:all .2s var(--ease)}
+.contact a:hover{background:var(--copper);color:var(--navy);border-color:var(--copper);transform:translateY(-2px)}
+.contact a.primary{background:var(--copper);color:var(--navy);border-color:var(--copper);font-weight:800}
+.contact a.primary:hover{background:var(--copper-soft);border-color:var(--copper-soft)}
+footer{padding:34px 0 44px;text-align:center;color:var(--faint);font-size:12.5px;border-top:1px solid var(--line-soft)}
+.reset{background:none;border:none;color:var(--faint);font-size:12px;cursor:pointer;text-decoration:underline;padding:4px;font-family:inherit}
+.reset:hover{color:var(--copper)}
+
+@media(max-width:600px){
+  .fase-head{flex-direction:column}
+  .fase-price{text-align:left}
+  .step{flex-wrap:wrap}
+  .step .amt{margin-left:43px;padding-left:0}
+}
+
+/* ============ IMPRESIÓN / PDF ============ */
+@media print{
+  @page{ size:A4; margin:14mm 13mm; }
+  :root{
+    --bone:#12182E; --muted:#4A5372; --faint:#7A8199;
+    --card:#FBF6F3; --card-2:#F7F8FB;
+    --line:#E3C9BC; --line-soft:#E4E7EF;
+    --copper:#A85F3F; --copper-soft:#8E4E33; --copper-dark:#A85F3F;
+    --navy:#12182E; --green:#1F7A52; --amber:#8A6410;
+  }
+  *{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+  body{ background:#fff !important; color:#12182E !important; font-size:10.4pt; line-height:1.5; }
+  .wrap{ max-width:100%; padding:0; }
+  .topbar, .reset, footer p:last-child{ display:none !important; }
+  .hero{ padding:0 0 10pt; }
+  .hero::before{ display:none; }
+  h1{ font-size:26pt; color:#12182E; }
+  h1 em{ color:#A85F3F; }
+  .lead{ font-size:11.4pt; color:#4A5372; }
+  .eyebrow{ color:#A85F3F; border-color:#E3C9BC; }
+  section{ padding:15pt 0; border-top:1px solid #E4E7EF; }
+  h2{ font-size:16.5pt; color:#12182E; }
+  h3{ font-size:12.6pt; }
+  .sub, p, .card p, .step p{ color:#4A5372; }
+  .sec-n{ color:#A85F3F; }
+  .chip{ background:#F7F8FB; border-color:#E4E7EF; }
+  .chip b{ color:#7A8199; }
+  .card{ background:#FBF6F3; border-color:#E3C9BC; }
+  .card.plain{ background:#F7F8FB; border-color:#E4E7EF; }
+  .icon{ color:#7A8199; }
+  .icon::before{ background:#A85F3F !important; box-shadow:none !important; }
+  .icon.ok::before{ background:#1F7A52 !important; }
+  .icon.warn::before{ background:#C9A227 !important; }
+  .icon.bad::before{ background:#C0392B !important; }
+  .fase{ background:#FBF6F3 !important; border-color:#E3C9BC; }
+  .fase-price b{ color:#A85F3F; }
+  .fase-price s, .tbl s, .was s{ color:#9AA0B4; }
+  .check label{ padding:4pt 6pt; font-size:10pt; }
+  .check input{ border:1.4pt solid #A85F3F !important; background:#fff !important; width:11pt; height:11pt; }
+  .check input:checked{ background:#A85F3F !important; }
+  .check input:checked + span{ color:#7A8199; }
+  .check li.hd{ color:#A85F3F; padding:9pt 6pt 2pt; }
+  .check li:hover{ background:none; }
+  .res li{ font-size:10.4pt; }
+  .tbl{ font-size:9.8pt; }
+  .tbl th{ color:#7A8199; border-bottom:1px solid #E3C9BC; }
+  .tbl td{ border-bottom:1px solid #E4E7EF; padding:8pt 8pt; }
+  .tbl .tot .num{ color:#A85F3F; }
+  .pricebox{ background:#FBF6F3 !important; border:1.5pt solid #E3C9BC; }
+  .badge{ background:#A85F3F !important; color:#fff !important; }
+  .now{ color:#A85F3F; font-size:34pt; }
+  .saving{ background:#EAF7F0 !important; border-color:#B7E0CB; color:#1F7A52 !important; }
+  .note{ background:#FDF6E6 !important; border-color:#EBD9A8; border-left:3pt solid #C9A227; }
+  .note b{ color:#8A6410; }
+  .note.ok{ background:#EEF8F2 !important; border-color:#C0E2CF; border-left-color:#1F7A52; }
+  .note.ok b{ color:#1F7A52; }
+  .step{ background:#F7F8FB !important; border-color:#E4E7EF; padding:10pt 12pt; }
+  .step::before{ background:#A85F3F !important; color:#fff !important; width:20pt; height:20pt; font-size:10pt; }
+  .step .amt{ color:#A85F3F; }
+  .tag{ background:#F7F8FB; border-color:#E4E7EF; color:#4A5372; }
+  .close{ background:#FBF6F3 !important; border-color:#E3C9BC; }
+  .contact a{ background:#fff; border-color:#E3C9BC; color:#12182E; }
+  .contact a.primary{ background:#A85F3F !important; color:#fff !important; border-color:#A85F3F; }
+  footer{ border-top:1px solid #E4E7EF; color:#7A8199; padding:14pt 0 0; }
+  .scroller{ overflow:visible; }
+  [data-anim]{ opacity:1 !important; transform:none !important; }
+  /* cortes de página */
+  .card, .step, .pricebox, .note, .close, .fase-head{ break-inside:avoid; page-break-inside:avoid; }
+  .check li{ break-inside:avoid; page-break-inside:avoid; }
+  h2, h3, .sec-n{ break-after:avoid; page-break-after:avoid; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="brandmark"><span class="dot"></span> Filtec × Gary Morales</div>
+    <div class="bar"><i id="barFill"></i></div>
+    <div class="pct" id="pctTxt">0%</div>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Propuesta · Agosto 2026</span>
+    <h1>El sistema comercial de Filtec,<br><em>funcionando solo</em></h1>
+    <p class="lead">WhatsApp atendido con inteligencia artificial las 24 horas, cada conversación guardada en el CRM, publicidad que se mide hasta la venta y dos tableros que se actualizan sin que nadie los toque.</p>
+    <div class="meta-row">
+      <div class="chip"><b>Preparado para</b>Filtec — Purificadores de agua</div>
+      <div class="chip"><b>Por</b>Gary Morales · Growth &amp; IA aplicada</div>
+      <div class="chip"><b>Duración</b>8 semanas</div>
+      <div class="chip"><b>Validez</b>30 días</div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="sec-n">01 · Punto de partida</div>
+    <h2>Lo que ya se ve desde afuera</h2>
+    <p class="sub">Antes de escribir esta propuesta revisé el sitio y las redes de Filtec. Esto es lo que encontré sin tener todavía ningún acceso — son observaciones externas que confirmamos juntos la primera semana.</p>
+    <div class="grid g2">
+      <div class="card">
+        <span class="icon ok">Ya está listo</span>
+        <h4>Zoho ya está funcionando</h4>
+        <p>El sitio tiene Zoho SalesIQ y el conector de Zoho CRM instalados. La base está puesta: no hay que empezar de cero, hay que terminar de conectarla.</p>
+      </div>
+      <div class="card">
+        <span class="icon warn">Con techo</span>
+        <h4>WhatsApp corre desde un celular</h4>
+        <p>Se atiende con la app de WhatsApp Business. Funciona, pero tiene techo: fuera de horario nadie responde, las conversaciones viven en un teléfono y no queda registro en el CRM.</p>
+      </div>
+      <div class="card">
+        <span class="icon bad">A resolver</span>
+        <h4>No detecté el píxel de Meta</h4>
+        <p>En la página de inicio no aparece el píxel de Facebook ni un contenedor de etiquetas. Si esto se confirma, la publicidad está corriendo a ciegas: Meta no sabe quién compró y no puede buscar más clientes como esos.</p>
+      </div>
+      <div class="card">
+        <span class="icon warn">Sin visibilidad</span>
+        <h4>La tienda vende, pero no reporta</h4>
+        <p>Hay tienda en línea con carrito y una categoría de cartuchos de reemplazo — recompra pura. Hoy no existe un tablero que muestre qué campaña, qué asesor y qué producto están trayendo ese dinero.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-n">02 · A dónde llegamos</div>
+    <h2>Cómo se ve Filtec en ocho semanas</h2>
+    <ul class="res">
+      <li><span><b>Ningún cliente sin respuesta, ni a las 2 de la mañana.</b> La IA saluda, resuelve dudas frecuentes, califica y agenda. Cuando hay intención real de compra, le pasa el chat al asesor con el resumen ya escrito.</span></li>
+      <li><span><b>Cada conversación queda en el CRM, no en el celular de un asesor.</b> Si alguien renuncia o está de vacaciones, el historial del cliente se queda en la empresa.</span></li>
+      <li><span><b>Meta deja de optimizar por «mensajes» y empieza a optimizar por cotización y venta real.</b> Es la diferencia entre pagar por curiosos y pagar por clientes.</span></li>
+      <li><span><b>Gerencia ve el rendimiento de cada asesor sin pedir un solo reporte.</b> Quién responde rápido, quién deja leads dormidos, quién cierra.</span></li>
+      <li><span><b>Los clientes de hace seis meses vuelven solos a comprar su cartucho.</b> Campaña automática de recompra sobre la base que ya existe: es el dinero más barato del negocio.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-n">03 · Plan de trabajo</div>
+    <h2>Qué se construye, punto por punto</h2>
+    <p class="sub">Tres bloques que se pueden contratar juntos o por separado. Marque cada casilla a medida que avanzamos: la barra de arriba muestra el progreso real del proyecto en todo momento.</p>
+
+    <div class="fase">
+      <div class="fase-head">
+        <div>
+          <div class="fase-tag">Fase A · Semanas 1 a 4</div>
+          <h3>WhatsApp profesional + CRM + inteligencia artificial</h3>
+        </div>
+        <div class="fase-price"><s>$2.900</s><b>$2.175</b></div>
+      </div>
+      <p class="fase-note">El corazón del proyecto: que ningún lead se pierda y que todo quede registrado.</p>
+      <ul class="check">
+        <li class="hd">Arranque y diagnóstico</li>
+        <li><label><input type="checkbox"><span>Revisión del plan de Zoho contratado y de los módulos que hoy se usan</span></label></li>
+        <li><label><input type="checkbox"><span>Auditoría del Business Manager: cuentas, píxel, dominio verificado y campañas anteriores</span></label></li>
+        <li><label><input type="checkbox"><span>Mapa del proceso comercial actual: de dónde entra el lead, quién lo atiende, cómo se cotiza y cómo se factura</span></label></li>
+        <li><label><input type="checkbox"><span>Definición de las etapas del embudo que se van a medir (contacto, calificado, cotizado, venta, recompra)</span></label></li>
+        <li class="hd">WhatsApp Business API</li>
+        <li><label><input type="checkbox"><span>Decisión del número: migrar el actual o activar uno nuevo, con las consecuencias explicadas por escrito</span></label></li>
+        <li><label><input type="checkbox"><span>Verificación del negocio en Meta y alta del número en WhatsApp Business API</span></label></li>
+        <li><label><input type="checkbox"><span>Conexión con Zoho: cada chat crea o actualiza el contacto y queda guardado en su ficha</span></label></li>
+        <li><label><input type="checkbox"><span>Bandeja compartida para los asesores, con reparto automático de conversaciones</span></label></li>
+        <li><label><input type="checkbox"><span>Reglas de asignación y de escalamiento por horario, zona o producto</span></label></li>
+        <li><label><input type="checkbox"><span>Entre 5 y 8 plantillas redactadas y enviadas a aprobación de Meta: bienvenida, cotización, seguimiento, recordatorio de cambio de cartucho y posventa</span></label></li>
+        <li><label><input type="checkbox"><span>Campos y etiquetas obligatorias en Zoho para que cada lead quede trazable hasta la venta</span></label></li>
+        <li class="hd">Inteligencia artificial</li>
+        <li><label><input type="checkbox"><span>Conexión de la IA con Zoho y WhatsApp a través de Supabase</span></label></li>
+        <li><label><input type="checkbox"><span>Base de conocimiento del asistente: catálogo de purificadores, cartuchos, precios, coberturas y garantías</span></label></li>
+        <li><label><input type="checkbox"><span>Atención automática de primera línea 24/7, con entrega al asesor cuando hay intención de compra</span></label></li>
+        <li><label><input type="checkbox"><span>Reglas duras de lo que la IA nunca puede prometer: precios fuera de lista, plazos o descuentos</span></label></li>
+        <li><label><input type="checkbox"><span>Resumen automático de cada conversación escrito en la ficha del contacto</span></label></li>
+        <li><label><input type="checkbox"><span>Calificación automática del lead: frío, tibio o caliente</span></label></li>
+        <li><label><input type="checkbox"><span>Alertas de lead caliente sin respuesta y de chats sin seguimiento en 24 horas</span></label></li>
+        <li><label><input type="checkbox"><span>Prueba completa con un asesor real antes de abrirlo a todo el equipo</span></label></li>
+      </ul>
+    </div>
+
+    <div class="fase">
+      <div class="fase-head">
+        <div>
+          <div class="fase-tag">Fase B · Semanas 4 a 6</div>
+          <h3>Medición real y publicidad que persigue ventas</h3>
+        </div>
+        <div class="fase-price"><s>$1.300</s><b>$975</b></div>
+      </div>
+      <p class="fase-note">Que Meta sepa exactamente qué anuncio produjo cada venta, y que la pauta se optimice sola hacia ahí.</p>
+      <ul class="check">
+        <li class="hd">Píxel y API de Conversiones</li>
+        <li><label><input type="checkbox"><span>Instalación o corrección del píxel de Meta en el sitio y verificación del dominio</span></label></li>
+        <li><label><input type="checkbox"><span>Eventos de la tienda en línea: producto visto, agregado al carrito, inicio de compra y compra con su valor</span></label></li>
+        <li><label><input type="checkbox"><span>API de Conversiones desde el servidor, sin contar dos veces lo mismo</span></label></li>
+        <li><label><input type="checkbox"><span>Eventos desde el CRM hacia Meta: cuando el asesor marca «cotizado» o «venta», Meta se entera</span></label></li>
+        <li><label><input type="checkbox"><span>Captura del identificador de anuncio en cada lead — sin esto, la publicidad de WhatsApp no se puede atribuir</span></label></li>
+        <li><label><input type="checkbox"><span>Conversiones personalizadas creadas y validadas en el administrador de eventos</span></label></li>
+        <li><label><input type="checkbox"><span>Verificación de la calidad de coincidencia de eventos (meta: 6.0 o más sobre 10)</span></label></li>
+        <li class="hd">Campañas de purificadores</li>
+        <li><label><input type="checkbox"><span>Estructura de campañas: captación por WhatsApp, ventas de tienda y retargeting</span></label></li>
+        <li><label><input type="checkbox"><span>Segmentación por ciudad y zona según la cobertura real de instalación</span></label></li>
+        <li><label><input type="checkbox"><span>Públicos personalizados a partir de la base de clientes de Zoho, más públicos similares</span></label></li>
+        <li><label><input type="checkbox"><span>Campaña automática de recompra de cartuchos a clientes que compraron hace meses</span></label></li>
+        <li><label><input type="checkbox"><span>Seis ángulos de comunicación con sus textos: salud familiar, ahorro frente al botellón, sarro y tuberías, negocios, instalación y garantía</span></label></li>
+        <li><label><input type="checkbox"><span>Guion de qué debe mostrar cada arte y cada video, para que el equipo de diseño de Filtec los produzca</span></label></li>
+        <li><label><input type="checkbox"><span>Plan de medición y rutina de optimización semanal</span></label></li>
+      </ul>
+    </div>
+
+    <div class="fase">
+      <div class="fase-head">
+        <div>
+          <div class="fase-tag">Fase C · Semanas 6 a 8</div>
+          <h3>Dos tableros que se actualizan solos</h3>
+        </div>
+        <div class="fase-price"><s>$1.900</s><b>$1.425</b></div>
+      </div>
+      <p class="fase-note">Uno para el equipo comercial, otro para la inversión publicitaria. Se abren desde el celular, con usuario propio.</p>
+      <ul class="check">
+        <li class="hd">Tablero de asesores</li>
+        <li><label><input type="checkbox"><span>Leads recibidos, atendidos y perdidos por cada asesor</span></label></li>
+        <li><label><input type="checkbox"><span>Tiempo de primera respuesta y tiempo promedio de respuesta</span></label></li>
+        <li><label><input type="checkbox"><span>Conversaciones sin seguimiento y leads dormidos</span></label></li>
+        <li><label><input type="checkbox"><span>Cotizaciones emitidas, cerradas y monto vendido por asesor</span></label></li>
+        <li><label><input type="checkbox"><span>Ranking del equipo y avance contra la meta del mes</span></label></li>
+        <li class="hd">Tablero de publicidad</li>
+        <li><label><input type="checkbox"><span>Inversión, alcance, costo por mil, clics y costo por conversación</span></label></li>
+        <li><label><input type="checkbox"><span>Costo por cotización y costo por venta real, cruzando publicidad con CRM</span></label></li>
+        <li><label><input type="checkbox"><span>Retorno de la inversión por campaña y por producto</span></label></li>
+        <li><label><input type="checkbox"><span>Comparación entre períodos y alertas cuando una campaña se dispara</span></label></li>
+        <li class="hd">Infraestructura y entrega</li>
+        <li><label><input type="checkbox"><span>Base de datos en Supabase con actualización automática cada 15 a 60 minutos, todos los días del año</span></label></li>
+        <li><label><input type="checkbox"><span>Acceso web con usuario propio para cada persona: el asesor ve lo suyo, gerencia ve todo</span></label></li>
+        <li><label><input type="checkbox"><span>Capacitación al equipo comercial y a gerencia</span></label></li>
+        <li><label><input type="checkbox"><span>Manual de operación escrito</span></label></li>
+        <li><label><input type="checkbox"><span>30 días de soporte y ajustes incluidos después de la entrega</span></label></li>
+      </ul>
+    </div>
+
+    <div class="note ok"><b>Sobre el «24/7».</b> Los tableros y las automatizaciones trabajan todos los días sin intervención humana, y se refrescan cada 15 a 60 minutos según la fuente. Prefiero decirlo con precisión: no es información al segundo, porque la propia plataforma de Meta reporta las conversiones atribuidas con hasta 24 o 48 horas de retraso. Nadie puede ofrecer menos que eso, y quien lo ofrezca no está diciendo toda la verdad.</div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-n">04 · Un punto por validar</div>
+    <h2>El sistema contable, con las cartas sobre la mesa</h2>
+    <p class="sub">Prefiero decir esto ahora y no cuando ya estemos trabajando.</p>
+    <div class="note"><b>Imperium no publica una vía de conexión automática.</b> Revisé su documentación pública y no ofrece integración abierta con otros sistemas. Eso significa que el dato de «factura emitida» es el único de todo el proyecto que no puedo garantizar que viaje solo. Los tableros funcionan igual — miden cotizaciones y cierres marcados en el CRM — pero para que muestren facturación real hay tres caminos, y el primero es gratis:</div>
+    <div class="grid g3" style="margin-top:17px">
+      <div class="card plain"><h4>1 · Preguntar a Imperium</h4><p>Solicitar acceso de lectura a sus datos. Muchos sistemas locales lo entregan cuando el cliente lo pide, aunque no lo anuncien. Es la primera gestión de la semana 1 y no cuesta nada.</p></div>
+      <div class="card plain"><h4>2 · Reportes programados</h4><p>Si Imperium permite enviar reportes automáticos, se cargan solos al tablero. Funciona bien, con unas horas de retraso en lugar de minutos.</p></div>
+      <div class="card plain"><h4>3 · Facturar desde Zoho</h4><p>Emitir desde el CRM y dejar Imperium para la contabilidad. Es lo más limpio técnicamente, pero implica un cambio administrativo: la decisión es de Filtec, no mía.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-n">05 · Trabajo compartido</div>
+    <h2>Lo que necesito de Filtec</h2>
+    <p class="sub">Nada de esto tiene costo para ustedes más allá del tiempo de reunirlo. Mientras más rápido llegue, más rápido arranca el reloj.</p>
+    <ul class="check">
+      <li class="hd">Accesos</li>
+      <li><label><input type="checkbox"><span>WordPress del sitio, con permisos de administrador</span></label></li>
+      <li><label><input type="checkbox"><span>Meta Business Manager, con permisos de administrador</span></label></li>
+      <li><label><input type="checkbox"><span>Zoho CRM y SalesIQ, con permisos de administrador</span></label></li>
+      <li><label><input type="checkbox"><span>Sistema contable Imperium, aunque sea solo de consulta</span></label></li>
+      <li><label><input type="checkbox"><span>Cuenta de Supabase donde vivirán los datos</span></label></li>
+      <li class="hd">WhatsApp</li>
+      <li><label><input type="checkbox"><span>Decisión sobre el número: migrar el actual o activar uno nuevo</span></label></li>
+      <li><label><input type="checkbox"><span>Si se elige uno nuevo: el chip y la línea telefónica los contrata Filtec, a nombre de la empresa, y deben llegar activos y sin haber sido usados antes en ninguna cuenta de WhatsApp</span></label></li>
+      <li><label><input type="checkbox"><span>Una persona con acceso a ese número durante el alta, para recibir el código de verificación</span></label></li>
+      <li><label><input type="checkbox"><span>Documentos de la empresa para la verificación del negocio en Meta (RUC y datos legales)</span></label></li>
+      <li class="hd">Información y equipo</li>
+      <li><label><input type="checkbox"><span>Catálogo actualizado con precios, coberturas de instalación y garantías</span></label></li>
+      <li><label><input type="checkbox"><span>Las preguntas que más repiten los clientes, y las respuestas que hoy da el equipo</span></label></li>
+      <li><label><input type="checkbox"><span>Artes, fotos y videos para la publicidad (yo entrego el guion de qué debe mostrar cada pieza)</span></label></li>
+      <li><label><input type="checkbox"><span>Una persona de contacto que resuelva dudas y apruebe avances</span></label></li>
+      <li><label><input type="checkbox"><span>Dos horas del equipo comercial para la capacitación final</span></label></li>
+    </ul>
+
+    <div class="note" style="margin-top:26px"><b>Un aviso importante sobre WhatsApp.</b> Cuando un número pasa a la versión profesional (API), deja de abrirse en la aplicación del celular: se atiende desde el CRM, con toda la ventaja de que varios asesores trabajen a la vez y quede registro. El historial anterior de ese número no se traslada. Por eso lo primero que decidimos juntos es si conviene migrar el número que ya conocen los clientes o arrancar con uno nuevo.</div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-n">06 · Límites del alcance</div>
+    <h2>Lo que esta propuesta no incluye</h2>
+    <p class="sub">Para que no haya sorpresas en ninguna de las dos direcciones.</p>
+    <div class="tags">
+      <span class="tag">Diseño de artes gráficas</span>
+      <span class="tag">Edición de reels o video</span>
+      <span class="tag">El presupuesto de publicidad</span>
+      <span class="tag">Rediseño del sitio web</span>
+      <span class="tag">Contenido orgánico de redes</span>
+      <span class="tag">Atender los chats (eso lo hace el equipo de Filtec)</span>
+      <span class="tag">Licencias de Zoho</span>
+    </div>
+
+    <h3 style="margin-top:34px">Costos de plataformas, que Filtec paga directamente</h3>
+    <p class="sub" style="margin-bottom:18px">No pasan por mí ni llevan recargo. Los dejo estimados para que entren en el presupuesto desde el primer día.</p>
+    <div class="scroller">
+    <table class="tbl">
+      <tr><th>Plataforma</th><th>Para qué</th><th class="num">Referencia mensual</th></tr>
+      <tr><td>Meta — mensajes de plantilla</td><td>Los avisos que Filtec inicia: seguimientos, recordatorios de cartucho, promociones. Cuando el cliente escribe primero, la conversación de servicio no tiene costo.</td><td class="num">Según volumen</td></tr>
+      <tr><td>Inteligencia artificial (Anthropic)</td><td>El cerebro que atiende y resume las conversaciones. Se paga por uso.</td><td class="num">$20 – $60</td></tr>
+      <tr><td>Supabase</td><td>Base de datos y procesos automáticos de los tableros.</td><td class="num">$0 – $25</td></tr>
+      <tr><td>Zoho</td><td>Licencias del CRM que ya utilizan.</td><td class="num">Ya contratado</td></tr>
+      <tr><td>Publicidad en Meta</td><td>La inversión en anuncios, pagada directo a Meta.</td><td class="num">Lo define Filtec</td></tr>
+    </table>
+    </div>
+    <div class="note ok" style="margin-top:18px"><b>Una aclaración técnica que suele costar caro.</b> Una suscripción común de inteligencia artificial no sirve para que un asistente responda WhatsApp automáticamente: eso requiere una clave de desarrollador que se paga por consumo, y es la que está estimada arriba. Lo menciono ahora para que nadie descubra ese costo a mitad del proyecto.</div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-n">07 · Inversión</div>
+    <h2>Lo que cuesta</h2>
+    <p class="sub">Las tres fases se pueden contratar por separado o juntas. Contratarlas juntas es lo más conveniente, y así queda el número.</p>
+
+    <div class="pricebox">
+      <span class="badge">Precio de lanzamiento · Cliente fundador</span>
+      <div class="was">Valor de las tres fases por separado <s>$6.100</s></div>
+      <div class="now">$4.125 <small>+ IVA</small></div>
+      <div class="saving">Ahorro de $1.975 · descuento del 25% aplicado</div>
+    </div>
+
+    <div class="scroller">
+    <table class="tbl">
+      <tr><th>Fase</th><th class="num">Precio normal</th><th class="num">Con descuento</th></tr>
+      <tr><td><b>A</b> · WhatsApp API + CRM + inteligencia artificial</td><td class="num"><s>$2.900</s></td><td class="num">$2.175</td></tr>
+      <tr><td><b>B</b> · Píxel, API de Conversiones y campañas</td><td class="num"><s>$1.300</s></td><td class="num">$975</td></tr>
+      <tr><td><b>C</b> · Los dos tableros automáticos</td><td class="num"><s>$1.900</s></td><td class="num">$1.425</td></tr>
+      <tr class="tot"><td>Las tres juntas</td><td class="num"><s>$6.100</s></td><td class="num">$4.125</td></tr>
+    </table>
+    </div>
+
+    <h3 style="margin-top:38px">Acompañamiento mensual, opcional</h3>
+    <p class="sub" style="margin-bottom:18px">Empieza el mes siguiente a la entrega de la Fase B. Se puede suspender avisando con 30 días: no hay permanencia obligatoria.</p>
+    <div class="scroller">
+    <table class="tbl">
+      <tr><th>Qué incluye cada mes</th><th class="num">Valor</th></tr>
+      <tr><td>Gestión y optimización de las campañas de Meta</td><td class="num" rowspan="4" style="vertical-align:middle;text-align:right">
+        <div style="font-size:13px;color:var(--faint);margin-bottom:3px"><s>$1.500</s></div>
+        <div style="font-size:26px;font-weight:900;color:var(--copper)">$1.125</div>
+        <div style="font-size:12px;color:var(--muted);font-weight:600;margin-top:4px">primeros 3 meses<br>luego $1.500</div>
+      </td></tr>
+      <tr><td>Mantenimiento de los dos tableros y de las automatizaciones</td></tr>
+      <tr><td>Auditoría mensual de conversaciones con IA: tiempos, calidad y seguimientos</td></tr>
+      <tr><td>Reunión de resultados y plan del mes siguiente</td></tr>
+    </table>
+    </div>
+    <p style="font-size:13.5px;color:var(--faint);margin-top:16px">Todos los valores están expresados en dólares y no incluyen IVA. Un desarrollador dedicado a estas integraciones cuesta entre $1.200 y $2.500 al mes en el mercado ecuatoriano, y aquí son ocho semanas de trabajo sobre un sistema que ya está probado y funcionando en otra empresa.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-n">08 · Forma de pago</div>
+    <h2>Pensado para que ninguno de los dos quede expuesto</h2>
+    <p class="sub">No pido todo por adelantado ni trabajo dos meses esperando el cobro. Se paga contra avance visible: en el peor de los casos, cualquiera de los dos arriesga apenas un tramo del proyecto.</p>
+    <div class="steps">
+      <div class="step">
+        <div><h4>Al arrancar — 40%</h4><p>Con esto reservo la agenda, se levantan los accesos y empieza la Fase A. El reloj de las ocho semanas corre desde que los accesos están entregados.</p></div>
+        <div class="amt">$1.650</div>
+      </div>
+      <div class="step">
+        <div><h4>Al entregar la Fase A — 30%</h4><p>Cuando el WhatsApp profesional está funcionando, conectado al CRM y con la IA atendiendo. Se paga sobre algo que ya se puede ver y usar.</p></div>
+        <div class="amt">$1.237,50</div>
+      </div>
+      <div class="step">
+        <div><h4>Al entregar todo — 30%</h4><p>Con las campañas midiendo ventas reales, los dos tableros en línea y el equipo capacitado. Desde ahí corren los 30 días de soporte incluidos.</p></div>
+        <div class="amt">$1.237,50</div>
+      </div>
+      <div class="step">
+        <div><h4>Acompañamiento mensual</h4><p>Por adelantado, dentro de los primeros cinco días de cada mes. Arranca el mes siguiente a la entrega de la Fase B y se puede suspender avisando con 30 días.</p></div>
+        <div class="amt">$1.125</div>
+      </div>
+    </div>
+    <div class="note ok" style="margin-top:22px"><b>Si prefieren ir fase por fase</b>, funciona igual de bien: 50% al iniciar cada fase y 50% al entregarla. Así Filtec nunca tiene comprometido más de medio bloque de trabajo, y decide si continúa con el siguiente viendo el resultado del anterior. Todo se factura con comprobante electrónico y se paga por transferencia.</div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-n">09 · Calendario</div>
+    <h2>Las ocho semanas</h2>
+    <div class="scroller">
+    <table class="tbl">
+      <tr><th>Semana</th><th>Qué ocurre</th><th>Qué se ve al final</th></tr>
+      <tr><td class="num" style="text-align:left">1</td><td>Accesos, diagnóstico y decisión del número de WhatsApp</td><td>Informe de lo encontrado y plan confirmado</td></tr>
+      <tr><td class="num" style="text-align:left">2 – 3</td><td>Alta de WhatsApp API, conexión con Zoho y plantillas a aprobación</td><td>Los asesores atienden desde el CRM</td></tr>
+      <tr><td class="num" style="text-align:left">4</td><td>Inteligencia artificial en línea y píxel corregido</td><td>La IA responde de madrugada y Meta empieza a recibir eventos</td></tr>
+      <tr><td class="num" style="text-align:left">5 – 6</td><td>API de Conversiones, campañas armadas y publicadas</td><td>Publicidad optimizando a cotización y venta</td></tr>
+      <tr><td class="num" style="text-align:left">6 – 7</td><td>Construcción de los dos tableros sobre Supabase</td><td>Tableros en línea, actualizándose solos</td></tr>
+      <tr><td class="num" style="text-align:left">8</td><td>Capacitación, manual y ajustes finales</td><td>Equipo autónomo y 30 días de soporte corriendo</td></tr>
+    </table>
+    </div>
+  </div>
+</section>
+
+<section style="border-top:none;padding-top:14px">
+  <div class="wrap">
+    <div class="close">
+      <h2>El siguiente paso es una conversación de 30 minutos</h2>
+      <p>Para revisar juntos los accesos, decidir qué pasa con el número de WhatsApp y confirmar por dónde empezamos. Si algo de esta propuesta sobra o falta, ese es el momento de ajustarlo.</p>
+      <div class="contact">
+        <a class="primary" href="https://wa.me/593983207958?text=Hola%20Gary%2C%20revisamos%20la%20propuesta%20de%20Filtec" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+        <a href="mailto:gary.morales.mkt@gmail.com?subject=Propuesta%20Filtec">Enviar un correo</a>
+        <a href="https://www.linkedin.com/in/garymoraleslitardo" target="_blank" rel="noopener">Ver mi perfil</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><b>Gary Morales</b> · Growth Marketing e inteligencia artificial aplicada a negocios<br>
+    Propuesta preparada para Filtec — Purificadores de agua · Agosto 2026 · Validez de 30 días</p>
+    <p style="margin-top:14px"><button class="reset" id="resetBtn">Reiniciar el avance marcado</button></p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var KEY='filtec-propuesta-2026-08';
+  var boxes=Array.prototype.slice.call(document.querySelectorAll('.check input[type=checkbox]'));
+  boxes.forEach(function(b,i){ b.dataset.i=i; });
+
+  function save(){
+    try{ localStorage.setItem(KEY, JSON.stringify(boxes.map(function(b){return b.checked?1:0}))); }catch(e){}
+  }
+  function load(){
+    try{
+      var raw=localStorage.getItem(KEY); if(!raw) return;
+      var st=JSON.parse(raw);
+      if(st && st.length===boxes.length){ boxes.forEach(function(b,i){ b.checked=!!st[i]; }); }
+    }catch(e){}
+  }
+  function paint(){
+    var done=boxes.filter(function(b){return b.checked}).length;
+    var pct=boxes.length? Math.round(done*100/boxes.length):0;
+    document.getElementById('barFill').style.width=pct+'%';
+    document.getElementById('pctTxt').textContent=pct+'%';
+  }
+  boxes.forEach(function(b){ b.addEventListener('change',function(){ save(); paint(); }); });
+  document.getElementById('resetBtn').addEventListener('click',function(){
+    if(!confirm('¿Desmarcar todo el avance?')) return;
+    boxes.forEach(function(b){ b.checked=false; }); save(); paint();
+  });
+  load(); paint();
+})();
+</script>
+</body>
+</html>
