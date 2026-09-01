@@ -42,19 +42,7 @@ body{
 .brandmark{display:flex;align-items:center;gap:9px;font-weight:800;font-size:13px;letter-spacing:.02em;white-space:nowrap}
 .dot{width:16px;height:16px;border-radius:50%;border:2.4px solid var(--copper);position:relative;flex:none}
 .dot::after{content:"";position:absolute;inset:3.4px;border-radius:50%;background:var(--copper)}
-.bar{flex:1;height:7px;border-radius:99px;background:rgba(247,247,242,.11);overflow:hidden;min-width:60px}
-.bar i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--copper-dark),var(--copper-soft));transition:width .5s var(--ease)}
-.pct{font-size:12px;font-weight:700;color:var(--copper-soft);white-space:nowrap;font-variant-numeric:tabular-nums}
 .doclabel{font-size:12px;font-weight:600;color:var(--faint);white-space:nowrap;margin-left:auto}
-/* El registro de avance permanece inactivo hasta la contratación.
-   Para activarlo, abrir la página con ?avance=1 al final de la dirección. */
-body:not(.seguimiento) .bar,
-body:not(.seguimiento) .pct,
-body:not(.seguimiento) #resetBtn{display:none}
-body.seguimiento .doclabel{display:none}
-body:not(.seguimiento) .check input{pointer-events:none}
-body:not(.seguimiento) .check label{cursor:default}
-body:not(.seguimiento) .check li:hover{background:none}
 
 /* portada */
 .hero{padding:clamp(52px,9vh,104px) 0 clamp(38px,6vh,64px);position:relative;overflow:hidden}
@@ -166,6 +154,9 @@ p:last-child{margin-bottom:0}
 .note.ok{background:rgba(95,211,154,.07);border-color:rgba(95,211,154,.26);border-left-color:var(--green)}
 .note.ok b{color:var(--green)}
 
+.items{list-style:none;display:grid;gap:11px;margin-top:4px}
+.items li{display:flex;gap:12px;align-items:flex-start;font-size:14.6px;color:var(--muted)}
+.items li::before{content:"";flex:none;width:7px;height:7px;margin-top:8px;border-radius:50%;background:var(--copper);box-shadow:0 0 0 3px rgba(217,142,115,.16)}
 .tags{display:flex;flex-wrap:wrap;gap:9px}
 .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:32px;padding:18px;border:1px solid var(--line);border-radius:15px;background:var(--card)}
 .flow span{background:rgba(247,247,242,.055);border:1px solid var(--line-soft);border-radius:9px;padding:8px 14px;font-size:13.5px;font-weight:600;white-space:nowrap}
@@ -183,8 +174,6 @@ p:last-child{margin-bottom:0}
 .contact a.primary{background:var(--copper);color:var(--navy);border-color:var(--copper);font-weight:800}
 .contact a.primary:hover{background:var(--copper-soft);border-color:var(--copper-soft)}
 footer{padding:34px 0 44px;text-align:center;color:var(--faint);font-size:12.5px;border-top:1px solid var(--line-soft)}
-.reset{background:none;border:none;color:var(--faint);font-size:12px;cursor:pointer;text-decoration:underline;padding:4px;font-family:inherit}
-.reset:hover{color:var(--copper)}
 
 @media(max-width:600px){
   .fase-head{flex-direction:column}
@@ -206,7 +195,7 @@ footer{padding:34px 0 44px;text-align:center;color:var(--faint);font-size:12.5px
   *{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
   body{ background:#fff !important; color:#12182E !important; font-size:10.4pt; line-height:1.5; }
   .wrap{ max-width:100%; padding:0; }
-  .topbar, .reset, footer p:last-child{ display:none !important; }
+  .topbar, footer p:last-child{ display:none !important; }
   .hero{ padding:0 0 10pt; }
   .hero::before{ display:none; }
   h1{ font-size:26pt; color:#12182E; }
@@ -253,6 +242,8 @@ footer{padding:34px 0 44px;text-align:center;color:var(--faint);font-size:12.5px
   .step::before{ background:#A85F3F !important; color:#fff !important; width:20pt; height:20pt; font-size:10pt; }
   .step .amt{ color:#A85F3F; }
   .tag{ background:#F7F8FB; border-color:#E4E7EF; color:#4A5372; }
+  .items li{ color:#4A5372; font-size:10pt; }
+  .items li::before{ background:#A85F3F !important; box-shadow:none !important; }
   .flow{ background:#FBF6F3 !important; border-color:#E3C9BC; padding:12pt; break-inside:avoid; }
   .flow span{ background:#fff !important; border-color:#E4E7EF; font-size:9.5pt; }
   .flow i{ color:#A85F3F; }
@@ -274,8 +265,6 @@ footer{padding:34px 0 44px;text-align:center;color:var(--faint);font-size:12.5px
 <div class="topbar">
   <div class="wrap">
     <div class="brandmark"><span class="dot"></span> Filtec × Gary Morales</div>
-    <div class="bar"><i id="barFill"></i></div>
-    <div class="pct" id="pctTxt">0%</div>
     <div class="doclabel">Propuesta de implementación</div>
   </div>
 </div>
@@ -380,7 +369,7 @@ footer{padding:34px 0 44px;text-align:center;color:var(--faint);font-size:12.5px
   <div class="wrap">
     <div class="sec-n">03 · Plan de implementación</div>
     <h2>Fases, entregables y resultados</h2>
-    <p class="sub">Cada fase concluye en entregables verificables y puede contratarse de forma independiente. El registro de avance se marca sobre este mismo documento: la barra superior refleja el estado real de la implementación.</p>
+    <p class="sub">Cada fase concluye en entregables verificables y puede contratarse de forma independiente. Los entregables de cada fase pueden marcarse sobre este mismo documento durante la implementación.</p>
     <div class="note ok" style="margin-bottom:26px"><b>El proyecto no contempla la adquisición ni la reimplementación de plataformas.</b> Zoho y Supabase ya están contratados por Filtec y permanecen bajo su propiedad. La inversión corresponde al trabajo de arquitectura, configuración, integración, automatización, pruebas y puesta en producción necesario para que WhatsApp, Zoho, Meta, la inteligencia artificial y los datos operen como un solo sistema.</div>
 
     <div class="fase">
@@ -596,18 +585,24 @@ footer{padding:34px 0 44px;text-align:center;color:var(--faint);font-size:12.5px
 
     <h3 style="margin-top:38px">Acompañamiento y optimización mensual</h3>
     <p class="sub" style="margin-bottom:18px">Servicio opcional que inicia una vez finalizado el período de 30 días de acompañamiento incluido, posterior a la entrega integral del proyecto.</p>
-    <div class="scroller">
-    <table class="tbl">
-      <tr><th>Alcance mensual</th><th class="num">Valor</th></tr>
-      <tr><td>Gestión y optimización de las campañas publicitarias</td><td class="num" rowspan="4" style="vertical-align:middle;text-align:right">
-        <div style="font-size:13px;color:var(--faint);margin-bottom:3px"><s>$1.500</s></div>
-        <div style="font-size:26px;font-weight:900;color:var(--copper)">$1.125</div>
-        <div style="font-size:12px;color:var(--muted);font-weight:600;margin-top:4px">primeros 3 períodos<br>posteriormente $1.500</div>
-      </td></tr>
-      <tr><td>Mantenimiento de los tableros analíticos y de las automatizaciones</td></tr>
-      <tr><td>Auditoría mensual de conversaciones mediante IA: tiempos, calidad y seguimiento</td></tr>
-      <tr><td>Reunión de resultados y definición del plan del período siguiente</td></tr>
-    </table>
+    <div class="fase" style="margin-bottom:0">
+      <div class="fase-head">
+        <div>
+          <div class="fase-tag">Paquete mensual completo</div>
+          <h3>Gestión, optimización y mantenimiento</h3>
+        </div>
+        <div class="fase-price">
+          <s>$1.500</s><b>$1.125</b>
+          <div style="font-size:12px;color:var(--muted);font-weight:600;margin-top:4px">primeros 3 períodos · posteriormente $1.500</div>
+        </div>
+      </div>
+      <p class="fase-note">El valor mensual comprende la totalidad de los cuatro componentes, no únicamente la gestión publicitaria:</p>
+      <ul class="items">
+        <li>Gestión y optimización de las campañas publicitarias</li>
+        <li>Mantenimiento de los tableros analíticos y de las automatizaciones</li>
+        <li>Auditoría mensual de conversaciones mediante IA: tiempos, calidad y seguimiento</li>
+        <li>Reunión de resultados y definición del plan del período siguiente</li>
+      </ul>
     </div>
     <div class="card plain" style="margin-top:20px">
       <h4>Modalidad de mantenimiento técnico</h4>
@@ -681,45 +676,28 @@ footer{padding:34px 0 44px;text-align:center;color:var(--faint);font-size:12.5px
   <div class="wrap">
     <p><b>Gary Morales</b> · Growth Marketing &amp; IA aplicada a negocios<br>
     Propuesta elaborada para Filtec — Purificadores de agua · Septiembre 2026 · Validez de 30 días</p>
-    <p style="margin-top:14px"><button class="reset" id="resetBtn">Reiniciar el registro de avance</button></p>
   </div>
 </footer>
 
 <script>
 (function(){
+  // Las casillas quedan operativas y su estado se conserva en el navegador de quien las marca.
+  // El seguimiento porcentual vivirá en el tablero de ejecución, fuera de esta propuesta.
   var KEY='filtec-propuesta-2026-08';
-  // El seguimiento de avance se habilita al iniciar el proyecto: ...?avance=1
-  var seguimiento = /(\?|&)avance=1\b/.test(location.search) || location.hash==='#avance';
-  if(!seguimiento){
-    document.querySelectorAll('.check input[type=checkbox]').forEach(function(b){ b.disabled=true; });
-    return;
-  }
-  document.body.classList.add('seguimiento');
   var boxes=Array.prototype.slice.call(document.querySelectorAll('.check input[type=checkbox]'));
-  boxes.forEach(function(b,i){ b.dataset.i=i; });
+  if(!boxes.length) return;
 
   function save(){
     try{ localStorage.setItem(KEY, JSON.stringify(boxes.map(function(b){return b.checked?1:0}))); }catch(e){}
   }
-  function load(){
-    try{
-      var raw=localStorage.getItem(KEY); if(!raw) return;
+  try{
+    var raw=localStorage.getItem(KEY);
+    if(raw){
       var st=JSON.parse(raw);
       if(st && st.length===boxes.length){ boxes.forEach(function(b,i){ b.checked=!!st[i]; }); }
-    }catch(e){}
-  }
-  function paint(){
-    var done=boxes.filter(function(b){return b.checked}).length;
-    var pct=boxes.length? Math.round(done*100/boxes.length):0;
-    document.getElementById('barFill').style.width=pct+'%';
-    document.getElementById('pctTxt').textContent=pct+'%';
-  }
-  boxes.forEach(function(b){ b.addEventListener('change',function(){ save(); paint(); }); });
-  document.getElementById('resetBtn').addEventListener('click',function(){
-    if(!confirm('¿Desea reiniciar el registro de avance?')) return;
-    boxes.forEach(function(b){ b.checked=false; }); save(); paint();
-  });
-  load(); paint();
+    }
+  }catch(e){}
+  boxes.forEach(function(b){ b.addEventListener('change', save); });
 })();
 </script>
 </body>
