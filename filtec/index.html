@@ -45,6 +45,16 @@ body{
 .bar{flex:1;height:7px;border-radius:99px;background:rgba(247,247,242,.11);overflow:hidden;min-width:60px}
 .bar i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--copper-dark),var(--copper-soft));transition:width .5s var(--ease)}
 .pct{font-size:12px;font-weight:700;color:var(--copper-soft);white-space:nowrap;font-variant-numeric:tabular-nums}
+.doclabel{font-size:12px;font-weight:600;color:var(--faint);white-space:nowrap;margin-left:auto}
+/* El registro de avance permanece inactivo hasta la contratación.
+   Para activarlo, abrir la página con ?avance=1 al final de la dirección. */
+body:not(.seguimiento) .bar,
+body:not(.seguimiento) .pct,
+body:not(.seguimiento) #resetBtn{display:none}
+body.seguimiento .doclabel{display:none}
+body:not(.seguimiento) .check input{pointer-events:none}
+body:not(.seguimiento) .check label{cursor:default}
+body:not(.seguimiento) .check li:hover{background:none}
 
 /* portada */
 .hero{padding:clamp(52px,9vh,104px) 0 clamp(38px,6vh,64px);position:relative;overflow:hidden}
@@ -266,6 +276,7 @@ footer{padding:34px 0 44px;text-align:center;color:var(--faint);font-size:12.5px
     <div class="brandmark"><span class="dot"></span> Filtec × Gary Morales</div>
     <div class="bar"><i id="barFill"></i></div>
     <div class="pct" id="pctTxt">0%</div>
+    <div class="doclabel">Propuesta de implementación</div>
   </div>
 </div>
 
@@ -276,7 +287,7 @@ footer{padding:34px 0 44px;text-align:center;color:var(--faint);font-size:12.5px
     <p class="lead">Integración de CRM, WhatsApp, inteligencia artificial, datos y analítica para construir un proceso comercial más conectado, medible y escalable.</p>
     <div class="meta-row">
       <div class="chip"><b>Preparado para</b>Filtec — Purificadores de agua</div>
-      <div class="chip"><b>Elaborado por</b>Gary Morales · Growth &amp; IA aplicada</div>
+      <div class="chip"><b>Elaborado por</b>Gary Morales · Growth Marketing &amp; IA aplicada a negocios</div>
       <div class="chip"><b>Plazo de implementación</b>8 semanas</div>
       <div class="chip"><b>Validez</b>30 días</div>
     </div>
@@ -360,7 +371,7 @@ footer{padding:34px 0 44px;text-align:center;color:var(--faint);font-size:12.5px
       <li><span><b>Continuidad de la información comercial</b> dentro de los sistemas de la empresa, independiente del dispositivo o del asesor que atienda.</span></li>
       <li><span><b>Optimización publicitaria basada en eventos reales del negocio</b> y no únicamente en interacciones iniciales.</span></li>
       <li><span><b>Capacidad de reactivación de la base de clientes</b>, en particular para la línea de cartuchos de reemplazo, de consumo recurrente.</span></li>
-      <li><span><b>Indicadores de gestión disponibles de forma permanente</b> para la dirección y el equipo comercial, sin elaboración manual de reportes.</span></li>
+      <li><span><b>Indicadores de gestión actualizados de forma automática</b> para la dirección y el equipo comercial, sin elaboración manual de reportes.</span></li>
     </ul>
   </div>
 </section>
@@ -398,7 +409,7 @@ footer{padding:34px 0 44px;text-align:center;color:var(--faint);font-size:12.5px
         <li class="hd">Inteligencia artificial y automatizaciones</li>
         <li><label><input type="checkbox"><span>Implementación de las funcionalidades de IA sobre la infraestructura Supabase existente, integradas con Zoho y WhatsApp</span></label></li>
         <li><label><input type="checkbox"><span>Construcción de la base de conocimiento: catálogo de purificadores, cartuchos, precios, coberturas y garantías</span></label></li>
-        <li><label><input type="checkbox"><span>Atención automatizada de primera línea con disponibilidad permanente y derivación al asesor ante intención de compra</span></label></li>
+        <li><label><input type="checkbox"><span>Atención automatizada de primera línea con operación continua, sujeta a la disponibilidad de las plataformas y servicios de terceros, con derivación al asesor ante intención de compra</span></label></li>
         <li><label><input type="checkbox"><span>Definición de restricciones operativas de la IA: condiciones comerciales, plazos y descuentos que no puede comprometer</span></label></li>
         <li><label><input type="checkbox"><span>Generación automática del resumen de cada conversación dentro del registro del contacto</span></label></li>
         <li><label><input type="checkbox"><span>Clasificación y scoring automático de oportunidades según el contenido de la interacción</span></label></li>
@@ -446,7 +457,7 @@ footer{padding:34px 0 44px;text-align:center;color:var(--faint);font-size:12.5px
         </div>
         <div class="fase-price"><b>$1.900</b></div>
       </div>
-      <p class="fase-note"><b>Objetivo:</b> consolidar la información del ecosistema en indicadores de gestión disponibles de forma permanente para el equipo comercial y la dirección.</p>
+      <p class="fase-note"><b>Objetivo:</b> consolidar la información del ecosistema en indicadores de gestión actualizados de forma automática para el equipo comercial y la dirección.</p>
       <ul class="check">
         <li class="hd">Tablero de gestión comercial</li>
         <li><label><input type="checkbox"><span>Oportunidades recibidas, gestionadas y perdidas por asesor</span></label></li>
@@ -460,16 +471,16 @@ footer{padding:34px 0 44px;text-align:center;color:var(--faint);font-size:12.5px
         <li><label><input type="checkbox"><span>Retorno de la inversión publicitaria por campaña y por línea de producto</span></label></li>
         <li><label><input type="checkbox"><span>Comparativos entre períodos y alertas por desviación de indicadores</span></label></li>
         <li class="hd">Infraestructura, capacitación y entrega</li>
-        <li><label><input type="checkbox"><span>Modelo de datos y procesos programados sobre la cuenta de Supabase existente, con actualización cada 15 a 60 minutos de forma permanente</span></label></li>
+        <li><label><input type="checkbox"><span>Modelo de datos y procesos programados sobre la cuenta de Supabase existente, con ciclos de actualización de entre 15 y 60 minutos según la fuente de datos</span></label></li>
         <li><label><input type="checkbox"><span>Control de acceso individual por usuario, con visibilidad diferenciada entre asesores y dirección</span></label></li>
         <li><label><input type="checkbox"><span>Capacitación al equipo comercial y a la dirección</span></label></li>
         <li><label><input type="checkbox"><span>Documentación técnica y manual de operación</span></label></li>
-        <li><label><input type="checkbox"><span>Período de acompañamiento de 30 días posterior a la entrega</span></label></li>
+        <li><label><input type="checkbox"><span>Período de acompañamiento incluido de 30 días, posterior a la entrega integral</span></label></li>
       </ul>
       <div class="note ok" style="margin-top:20px"><b>Resultado esperado:</b> indicadores de gestión actualizados de forma automática, que sustituyen la elaboración manual de reportes y sostienen la toma de decisiones comerciales y publicitarias.</div>
     </div>
 
-    <div class="note"><b>Sobre la disponibilidad permanente.</b> Los tableros y las automatizaciones operan de forma continua sin intervención humana, con ciclos de actualización de 15 a 60 minutos según la fuente de datos. La información publicitaria conserva la latencia propia de las plataformas de origen, que consolidan las conversiones atribuidas dentro de las 24 a 48 horas posteriores.</div>
+    <div class="note"><b>Sobre los ciclos de actualización.</b> Los tableros y las automatizaciones ejecutan sus procesos de forma programada, con ciclos de actualización de entre 15 y 60 minutos según la fuente de datos. La información publicitaria conserva la latencia propia de las plataformas de origen, que consolidan las conversiones atribuidas dentro de las 24 a 48 horas posteriores.</div>
   </div>
 </section>
 
@@ -477,10 +488,10 @@ footer{padding:34px 0 44px;text-align:center;color:var(--faint);font-size:12.5px
   <div class="wrap">
     <div class="sec-n">04 · Validación técnica</div>
     <h2>Integración con el sistema contable</h2>
-    <div class="note"><b>Imperium no publica una vía de integración documentada.</b> La revisión de su documentación pública no identifica API, webhooks ni mecanismos de exportación automatizada. En consecuencia, el evento de facturación emitida es el único componente del proyecto cuya automatización no puede garantizarse por anticipado. Los tableros operan igualmente sobre las cotizaciones y cierres registrados en el CRM, y la incorporación de la facturación real se resuelve mediante la siguiente gestión, sin costo:</div>
+    <div class="note"><b>Imperium no publica una vía de integración documentada.</b> La revisión de su documentación pública no identifica API, webhooks ni mecanismos de exportación automatizada. En consecuencia, el evento de facturación emitida es el único componente del proyecto cuya automatización no puede garantizarse por anticipado. Los tableros operan igualmente sobre las cotizaciones y cierres registrados en el CRM, y la incorporación de la facturación real se resuelve mediante la siguiente gestión, incluida dentro del alcance de diagnóstico de la implementación:</div>
     <div class="card plain" style="margin-top:17px;max-width:640px">
       <h4>Solicitud formal de acceso a Imperium</h4>
-      <p>Requerimiento de acceso de lectura a los datos de facturación. Diversos sistemas locales lo habilitan a solicitud del cliente aunque no lo difundan públicamente. Constituye la primera gestión de la semana 1. En caso de respuesta negativa, las alternativas técnicas se evalúan y se presentan antes de ejecutar cualquier desarrollo.</p>
+      <p>Requerimiento de acceso de lectura a los datos de facturación. Diversos sistemas locales lo habilitan a solicitud del cliente aunque no lo difundan públicamente. Constituye la primera gestión de la semana 1 y forma parte del diagnóstico inicial. En caso de respuesta negativa, las alternativas técnicas se evalúan y se presentan antes de ejecutar cualquier desarrollo.</p>
     </div>
   </div>
 </section>
@@ -568,7 +579,7 @@ footer{padding:34px 0 44px;text-align:center;color:var(--faint);font-size:12.5px
       <span class="badge">Implementación integral</span>
       <div class="was">Contratación independiente de las tres fases: <s>$6.100</s></div>
       <div class="now">$4.125 <small>+ IVA</small></div>
-      <div class="saving">Diferencia de $1.975 respecto de la contratación por separado</div>
+      <div class="saving">Ahorro por contratación integral: $1.975</div>
     </div>
     <p class="sub" style="margin-bottom:26px">La inversión contempla el diseño, la configuración, la integración, las pruebas, la puesta en producción y la capacitación correspondientes al alcance descrito en esta propuesta.</p>
 
@@ -584,7 +595,7 @@ footer{padding:34px 0 44px;text-align:center;color:var(--faint);font-size:12.5px
     </div>
 
     <h3 style="margin-top:38px">Acompañamiento y optimización mensual</h3>
-    <p class="sub" style="margin-bottom:18px">Servicio opcional. Inicia el período siguiente a la entrega de la Fase B.</p>
+    <p class="sub" style="margin-bottom:18px">Servicio opcional que inicia una vez finalizado el período de 30 días de acompañamiento incluido, posterior a la entrega integral del proyecto.</p>
     <div class="scroller">
     <table class="tbl">
       <tr><th>Alcance mensual</th><th class="num">Valor</th></tr>
@@ -625,7 +636,7 @@ footer{padding:34px 0 44px;text-align:center;color:var(--faint);font-size:12.5px
         <div class="amt">$1.237,50</div>
       </div>
       <div class="step">
-        <div><h4>Acompañamiento y optimización mensual</h4><p>Servicio de acompañamiento técnico y optimización continua de la solución implementada. Se factura por adelantado dentro de los primeros cinco días de cada período y puede cancelarse mediante notificación previa de 30 días.</p></div>
+        <div><h4>Acompañamiento y optimización mensual</h4><p>El período de 30 días de acompañamiento incluido comienza con la entrega integral del proyecto. Finalizado dicho período, Filtec podrá contratar la modalidad mensual de acompañamiento técnico y optimización continua de la solución implementada. Se factura por adelantado dentro de los primeros cinco días de cada período y puede cancelarse mediante notificación previa de 30 días.</p></div>
         <div class="amt">$1.125 / mes</div>
       </div>
     </div>
@@ -668,7 +679,7 @@ footer{padding:34px 0 44px;text-align:center;color:var(--faint);font-size:12.5px
 
 <footer>
   <div class="wrap">
-    <p><b>Gary Morales</b> · Growth Marketing e inteligencia artificial aplicada a negocios<br>
+    <p><b>Gary Morales</b> · Growth Marketing &amp; IA aplicada a negocios<br>
     Propuesta elaborada para Filtec — Purificadores de agua · Septiembre 2026 · Validez de 30 días</p>
     <p style="margin-top:14px"><button class="reset" id="resetBtn">Reiniciar el registro de avance</button></p>
   </div>
@@ -677,6 +688,13 @@ footer{padding:34px 0 44px;text-align:center;color:var(--faint);font-size:12.5px
 <script>
 (function(){
   var KEY='filtec-propuesta-2026-08';
+  // El seguimiento de avance se habilita al iniciar el proyecto: ...?avance=1
+  var seguimiento = /(\?|&)avance=1\b/.test(location.search) || location.hash==='#avance';
+  if(!seguimiento){
+    document.querySelectorAll('.check input[type=checkbox]').forEach(function(b){ b.disabled=true; });
+    return;
+  }
+  document.body.classList.add('seguimiento');
   var boxes=Array.prototype.slice.call(document.querySelectorAll('.check input[type=checkbox]'));
   boxes.forEach(function(b,i){ b.dataset.i=i; });
 
