@@ -118,6 +118,15 @@ p:last-child{margin-bottom:0}
   padding:16px 11px 5px;pointer-events:none}
 .check li.hd:first-child{padding-top:4px}
 
+/* ── MODO PROPUESTA ────────────────────────────────────────────────
+   Los entregables se presentan como lista, sin casillas marcables.
+   AL CERRAR EL TRATO: añadir class="ejecucion" a la etiqueta <body>
+   y las casillas quedan operativas, guardando el avance.            */
+body:not(.ejecucion) .check input{display:none}
+body:not(.ejecucion) .check label{cursor:default}
+body:not(.ejecucion) .check label::before{content:"";flex:none;width:7px;height:7px;margin-top:8px;border-radius:50%;background:var(--copper);box-shadow:0 0 0 3px rgba(217,142,115,.16)}
+body:not(.ejecucion) .check li:hover{background:none}
+
 /* tabla */
 .tbl{width:100%;border-collapse:collapse;font-size:14.5px;margin:6px 0 4px}
 .tbl th{text-align:left;font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--faint);font-weight:800;padding:0 12px 11px;border-bottom:1px solid var(--line)}
@@ -221,6 +230,7 @@ footer{padding:34px 0 44px;text-align:center;color:var(--faint);font-size:12.5px
   .fase-price s, .tbl s, .was s{ color:#9AA0B4; }
   .check label{ padding:4pt 6pt; font-size:10pt; }
   .check input{ border:1.4pt solid #A85F3F !important; background:#fff !important; width:11pt; height:11pt; }
+  body:not(.ejecucion) .check label::before{ background:#A85F3F !important; box-shadow:none !important; width:5pt; height:5pt; margin-top:5pt; }
   .check input:checked{ background:#A85F3F !important; }
   .check input:checked + span{ color:#7A8199; }
   .check li.hd{ color:#A85F3F; padding:9pt 6pt 2pt; }
@@ -369,7 +379,7 @@ footer{padding:34px 0 44px;text-align:center;color:var(--faint);font-size:12.5px
   <div class="wrap">
     <div class="sec-n">03 · Plan de implementación</div>
     <h2>Fases, entregables y resultados</h2>
-    <p class="sub">Cada fase concluye en entregables verificables y puede contratarse de forma independiente. Los entregables de cada fase pueden marcarse sobre este mismo documento durante la implementación.</p>
+    <p class="sub">Cada fase concluye en entregables verificables y puede contratarse de forma independiente.</p>
     <div class="note ok" style="margin-bottom:26px"><b>El proyecto no contempla la adquisición ni la reimplementación de plataformas.</b> Zoho y Supabase ya están contratados por Filtec y permanecen bajo su propiedad. La inversión corresponde al trabajo de arquitectura, configuración, integración, automatización, pruebas y puesta en producción necesario para que WhatsApp, Zoho, Meta, la inteligencia artificial y los datos operen como un solo sistema.</div>
 
     <div class="fase">
@@ -681,8 +691,9 @@ footer{padding:34px 0 44px;text-align:center;color:var(--faint);font-size:12.5px
 
 <script>
 (function(){
-  // Las casillas quedan operativas y su estado se conserva en el navegador de quien las marca.
-  // El seguimiento porcentual vivirá en el tablero de ejecución, fuera de esta propuesta.
+  // Sin casillas mientras es propuesta comercial. Al cerrar el trato se añade
+  // class="ejecucion" al <body> y el avance marcado se conserva en el navegador.
+  if(!document.body.classList.contains('ejecucion')) return;
   var KEY='filtec-propuesta-2026-08';
   var boxes=Array.prototype.slice.call(document.querySelectorAll('.check input[type=checkbox]'));
   if(!boxes.length) return;
